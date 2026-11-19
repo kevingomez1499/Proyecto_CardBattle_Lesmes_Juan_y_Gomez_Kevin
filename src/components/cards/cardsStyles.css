@@ -1,0 +1,36 @@
+.admin-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: end; margin-bottom: 12px; }
+.admin-head p { margin: 6px 0 0; color: var(--muted); }
+.admin-tools { display: flex; gap: 8px; flex-wrap: wrap; }
+.admin-note { font-size: 0.9rem; color: var(--muted); background: var(--panel); border-left: 4px solid var(--shield); padding: 10px 14px; border-radius: 6px; }
+.notice { padding: 10px 14px; border-radius: 8px; margin: 12px 0; }
+.notice-success { background: #3ddc9722; border: 1px solid var(--good); }
+.notice-error { background: #ff546822; border: 1px solid var(--danger); }
+
+.adm-list { display: grid; gap: 12px; margin-top: 16px; }
+.adm-card { display: grid; grid-template-columns: 72px 1fr auto; gap: 14px; align-items: center; padding: 10px; background: var(--panel); border: 2px solid var(--line); border-radius: var(--radius); }
+.adm-card.is-inactive { opacity: 0.6; }
+.adm-card img { width: 72px; height: 94px; object-fit: cover; border-radius: 8px; }
+.adm-info h3 small { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.adm-info p { margin: 4px 0 0; font-size: 0.9rem; color: var(--muted); }
+.adm-state { color: var(--gold) !important; }
+.adm-actions { display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 700px) {
+  .adm-card { grid-template-columns: 60px 1fr; }
+  .adm-card img { width: 60px; height: 80px; }
+  .adm-actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
+}
+
+/* ---- formulario en <dialog> ---- */
+.card-dialog { border: 2px solid var(--gold); border-radius: var(--radius); background: var(--panel); color: var(--ink); width: min(560px, 94vw); max-height: 92vh; padding: 0; }
+.card-dialog::backdrop { background: #000a; }
+.card-form { display: grid; gap: 10px; padding: 22px; }
+.card-form label { display: grid; gap: 4px; font-weight: 600; font-size: 0.9rem; }
+.card-form input, .card-form textarea { width: 100%; padding: 8px 10px; border-radius: 8px; background: var(--night); border: 2px solid var(--line); }
+.card-form input:focus, .card-form textarea:focus { border-color: var(--gold); outline: none; }
+.card-form fieldset { border: 1px solid var(--line); border-radius: 10px; display: grid; gap: 8px; }
+.card-form legend { padding: 0 6px; color: var(--muted); font-size: 0.85rem; }
+.f-row { display: grid; grid-template-columns: 1fr 90px; gap: 8px; }
+.f-row:has(input:only-child) { grid-template-columns: 1fr; }
+.card-form .check { display: flex; align-items: center; gap: 8px; }
+.card-form .check input { width: auto; }
+.f-actions { display: flex; justify-content: flex-end; gap: 8px; }

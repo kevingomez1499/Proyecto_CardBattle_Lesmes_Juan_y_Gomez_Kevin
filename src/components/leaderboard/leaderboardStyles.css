@@ -1,0 +1,25 @@
+.board h2 { margin-bottom: 28px; text-align: center; }
+.podium { display: flex; justify-content: center; align-items: flex-end; gap: clamp(8px, 2vw, 22px); margin-bottom: 32px; }
+.podium-spot {
+  flex: 1; max-width: 220px; display: grid; justify-items: center; gap: 2px; text-align: center;
+  padding-top: 14px; background: var(--panel); border: 2px solid var(--line); border-radius: var(--radius) var(--radius) 0 0;
+}
+.podium-medal { font-size: 2.2rem; }
+.podium-name { font-size: 1.1rem; overflow-wrap: anywhere; padding: 0 6px; }
+.podium-points { font-family: var(--font-title); font-size: 1.4rem; color: var(--gold); }
+.podium-meta { font-size: 0.75rem; color: var(--muted); padding: 0 6px 10px; }
+.podium-block { width: 100%; font-family: var(--font-title); font-size: 1.6rem; padding: 10px 0; color: #1a1300; }
+.place-1 { border-color: #ffc83d; }
+.place-1 .podium-block { background: #ffc83d; padding: 40px 0; }
+.place-2 { border-color: #c9d1e0; }
+.place-2 .podium-block { background: #c9d1e0; padding: 24px 0; }
+.place-3 { border-color: #d98b55; }
+.place-3 .podium-block { background: #d98b55; padding: 12px 0; }
+.place-1 .podium-medal { font-size: 3rem; }
+.podium-spot.is-me { box-shadow: 0 0 0 3px var(--good); }
+
+.table-wrap { overflow-x: auto; }
+.board-table { width: 100%; border-collapse: collapse; background: var(--panel); border-radius: var(--radius); overflow: hidden; }
+.board-table th, .board-table td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+.board-table th { background: var(--panel-2); color: var(--muted); font-weight: 600; }
+.board-table tr.is-me td { background: #3ddc9722; font-weight: 700; }

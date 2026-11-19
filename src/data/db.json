@@ -1,0 +1,983 @@
+{
+  "admins": [
+    {
+      "id": "admin-001",
+      "username": "administrador",
+      "password": "tarjetas2026"
+    }
+  ],
+  "players": [
+    {
+      "id": "player-mwo136nu",
+      "nickname": "less",
+      "points": 0,
+      "wins": 0,
+      "losses": 0,
+      "gamesPlayed": 0,
+      "createdAt": "2026-11-19T20:54:21.306Z"
+    }
+  ],
+  "cards": [
+    {
+      "id": "card-001",
+      "name": "Voltaris",
+      "type": "Eléctrico",
+      "image": "images/cards/voltaris.svg",
+      "description": "Guardián eléctrico especializado en ataques rápidos.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Chispa",
+          "baseDamage": 20
+        },
+        {
+          "id": "attack-02",
+          "name": "Descarga Rápida",
+          "baseDamage": 30
+        },
+        {
+          "id": "attack-03",
+          "name": "Pulso de Trueno",
+          "baseDamage": 40
+        },
+        {
+          "id": "attack-04",
+          "name": "Rompetormentas",
+          "baseDamage": 50
+        }
+      ],
+      "defense": {
+        "name": "Escudo Estático",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Trueno Final",
+        "baseDamage": 63,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-electric.mp3",
+        "defense": "sounds/defense-electric.mp3",
+        "special": "sounds/special-electric.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-002",
+      "name": "Zapkin",
+      "type": "Eléctrico",
+      "image": "images/cards/zapkin.svg",
+      "description": "Pequeño y veloz, acumula energía en su cola.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Chispa",
+          "baseDamage": 22
+        },
+        {
+          "id": "attack-02",
+          "name": "Descarga Rápida",
+          "baseDamage": 32
+        },
+        {
+          "id": "attack-03",
+          "name": "Pulso de Trueno",
+          "baseDamage": 42
+        },
+        {
+          "id": "attack-04",
+          "name": "Rompetormentas",
+          "baseDamage": 52
+        }
+      ],
+      "defense": {
+        "name": "Escudo Estático",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Tormenta Chispa",
+        "baseDamage": 66,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-electric.mp3",
+        "defense": "sounds/defense-electric.mp3",
+        "special": "sounds/special-electric.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-003",
+      "name": "Pyronox",
+      "type": "Fuego",
+      "image": "images/cards/pyronox.svg",
+      "description": "Bestia volcánica que no conoce el cansancio.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Brasa",
+          "baseDamage": 18
+        },
+        {
+          "id": "attack-02",
+          "name": "Llamarada",
+          "baseDamage": 28
+        },
+        {
+          "id": "attack-03",
+          "name": "Bola de Fuego",
+          "baseDamage": 38
+        },
+        {
+          "id": "attack-04",
+          "name": "Lanza Ígnea",
+          "baseDamage": 48
+        }
+      ],
+      "defense": {
+        "name": "Muro de Calor",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Erupción Solar",
+        "baseDamage": 69,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-fire.mp3",
+        "defense": "sounds/defense-fire.mp3",
+        "special": "sounds/special-fire.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-004",
+      "name": "Embrix",
+      "type": "Fuego",
+      "image": "images/cards/embrix.svg",
+      "description": "Un zorro de brasas que quema todo a su paso.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Brasa",
+          "baseDamage": 20
+        },
+        {
+          "id": "attack-02",
+          "name": "Llamarada",
+          "baseDamage": 30
+        },
+        {
+          "id": "attack-03",
+          "name": "Bola de Fuego",
+          "baseDamage": 40
+        },
+        {
+          "id": "attack-04",
+          "name": "Lanza Ígnea",
+          "baseDamage": 50
+        }
+      ],
+      "defense": {
+        "name": "Muro de Calor",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Llamarada Infernal",
+        "baseDamage": 60,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-fire.mp3",
+        "defense": "sounds/defense-fire.mp3",
+        "special": "sounds/special-fire.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-005",
+      "name": "Flamera",
+      "type": "Fuego",
+      "image": "images/cards/flamera.svg",
+      "description": "Ave legendaria que renace de sus cenizas.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Brasa",
+          "baseDamage": 22
+        },
+        {
+          "id": "attack-02",
+          "name": "Llamarada",
+          "baseDamage": 32
+        },
+        {
+          "id": "attack-03",
+          "name": "Bola de Fuego",
+          "baseDamage": 42
+        },
+        {
+          "id": "attack-04",
+          "name": "Lanza Ígnea",
+          "baseDamage": 52
+        }
+      ],
+      "defense": {
+        "name": "Muro de Calor",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Fénix Ardiente",
+        "baseDamage": 63,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-fire.mp3",
+        "defense": "sounds/defense-fire.mp3",
+        "special": "sounds/special-fire.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-006",
+      "name": "Aquaros",
+      "type": "Agua",
+      "image": "images/cards/aquaros.svg",
+      "description": "Rey de los océanos, calmado hasta que se enfada.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Chorro",
+          "baseDamage": 18
+        },
+        {
+          "id": "attack-02",
+          "name": "Ola Veloz",
+          "baseDamage": 28
+        },
+        {
+          "id": "attack-03",
+          "name": "Cascada",
+          "baseDamage": 38
+        },
+        {
+          "id": "attack-04",
+          "name": "Presión Abisal",
+          "baseDamage": 48
+        }
+      ],
+      "defense": {
+        "name": "Burbuja Protectora",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Tsunami Real",
+        "baseDamage": 66,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-water.mp3",
+        "defense": "sounds/defense-water.mp3",
+        "special": "sounds/special-water.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-007",
+      "name": "Marenko",
+      "type": "Agua",
+      "image": "images/cards/marenko.svg",
+      "description": "Habitante de las profundidades más oscuras.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Chorro",
+          "baseDamage": 20
+        },
+        {
+          "id": "attack-02",
+          "name": "Ola Veloz",
+          "baseDamage": 30
+        },
+        {
+          "id": "attack-03",
+          "name": "Cascada",
+          "baseDamage": 40
+        },
+        {
+          "id": "attack-04",
+          "name": "Presión Abisal",
+          "baseDamage": 50
+        }
+      ],
+      "defense": {
+        "name": "Burbuja Protectora",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Torbellino Abisal",
+        "baseDamage": 69,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-water.mp3",
+        "defense": "sounds/defense-water.mp3",
+        "special": "sounds/special-water.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-008",
+      "name": "Coralix",
+      "type": "Agua",
+      "image": "images/cards/coralix.svg",
+      "description": "Su caparazón de coral desvía cualquier golpe.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Chorro",
+          "baseDamage": 22
+        },
+        {
+          "id": "attack-02",
+          "name": "Ola Veloz",
+          "baseDamage": 32
+        },
+        {
+          "id": "attack-03",
+          "name": "Cascada",
+          "baseDamage": 42
+        },
+        {
+          "id": "attack-04",
+          "name": "Presión Abisal",
+          "baseDamage": 52
+        }
+      ],
+      "defense": {
+        "name": "Burbuja Protectora",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Marea Cristal",
+        "baseDamage": 60,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-water.mp3",
+        "defense": "sounds/defense-water.mp3",
+        "special": "sounds/special-water.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-009",
+      "name": "Floralis",
+      "type": "Planta",
+      "image": "images/cards/floralis.svg",
+      "description": "Guardiana del bosque con flores venenosas.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Latigazo",
+          "baseDamage": 18
+        },
+        {
+          "id": "attack-02",
+          "name": "Hoja Afilada",
+          "baseDamage": 28
+        },
+        {
+          "id": "attack-03",
+          "name": "Espinas",
+          "baseDamage": 38
+        },
+        {
+          "id": "attack-04",
+          "name": "Rayo Solar",
+          "baseDamage": 48
+        }
+      ],
+      "defense": {
+        "name": "Corteza Dura",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Jardín Espinoso",
+        "baseDamage": 63,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-plant.mp3",
+        "defense": "sounds/defense-plant.mp3",
+        "special": "sounds/special-plant.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-010",
+      "name": "Verdant",
+      "type": "Planta",
+      "image": "images/cards/verdant.svg",
+      "description": "Árbol ancestral que despierta cuando lo necesitan.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Latigazo",
+          "baseDamage": 20
+        },
+        {
+          "id": "attack-02",
+          "name": "Hoja Afilada",
+          "baseDamage": 30
+        },
+        {
+          "id": "attack-03",
+          "name": "Espinas",
+          "baseDamage": 40
+        },
+        {
+          "id": "attack-04",
+          "name": "Rayo Solar",
+          "baseDamage": 50
+        }
+      ],
+      "defense": {
+        "name": "Corteza Dura",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Raíz Colosal",
+        "baseDamage": 66,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-plant.mp3",
+        "defense": "sounds/defense-plant.mp3",
+        "special": "sounds/special-plant.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-011",
+      "name": "Frostal",
+      "type": "Hielo",
+      "image": "images/cards/frostal.svg",
+      "description": "Lobo de escarcha que ruge con vientos helados.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Escarcha",
+          "baseDamage": 22
+        },
+        {
+          "id": "attack-02",
+          "name": "Lanza de Hielo",
+          "baseDamage": 32
+        },
+        {
+          "id": "attack-03",
+          "name": "Aliento Gélido",
+          "baseDamage": 42
+        },
+        {
+          "id": "attack-04",
+          "name": "Avalancha",
+          "baseDamage": 52
+        }
+      ],
+      "defense": {
+        "name": "Muro de Hielo",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Ventisca Eterna",
+        "baseDamage": 69,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-ice.mp3",
+        "defense": "sounds/defense-ice.mp3",
+        "special": "sounds/special-ice.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-012",
+      "name": "Glaciar",
+      "type": "Hielo",
+      "image": "images/cards/glaciar.svg",
+      "description": "Gigante de hielo imposible de mover.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Escarcha",
+          "baseDamage": 18
+        },
+        {
+          "id": "attack-02",
+          "name": "Lanza de Hielo",
+          "baseDamage": 28
+        },
+        {
+          "id": "attack-03",
+          "name": "Aliento Gélido",
+          "baseDamage": 38
+        },
+        {
+          "id": "attack-04",
+          "name": "Avalancha",
+          "baseDamage": 48
+        }
+      ],
+      "defense": {
+        "name": "Muro de Hielo",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Cero Absoluto",
+        "baseDamage": 60,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-ice.mp3",
+        "defense": "sounds/defense-ice.mp3",
+        "special": "sounds/special-ice.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-013",
+      "name": "Nocturne",
+      "type": "Sombra",
+      "image": "images/cards/nocturne.svg",
+      "description": "Cazador que solo ataca cuando cae la noche.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Zarpazo",
+          "baseDamage": 20
+        },
+        {
+          "id": "attack-02",
+          "name": "Niebla Negra",
+          "baseDamage": 30
+        },
+        {
+          "id": "attack-03",
+          "name": "Garra Umbría",
+          "baseDamage": 40
+        },
+        {
+          "id": "attack-04",
+          "name": "Vacío",
+          "baseDamage": 50
+        }
+      ],
+      "defense": {
+        "name": "Manto de Sombras",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Eclipse Total",
+        "baseDamage": 63,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-shadow.mp3",
+        "defense": "sounds/defense-shadow.mp3",
+        "special": "sounds/special-shadow.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-014",
+      "name": "Umbrax",
+      "type": "Sombra",
+      "image": "images/cards/umbrax.svg",
+      "description": "Criatura sin forma que se esconde en las sombras.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Zarpazo",
+          "baseDamage": 22
+        },
+        {
+          "id": "attack-02",
+          "name": "Niebla Negra",
+          "baseDamage": 32
+        },
+        {
+          "id": "attack-03",
+          "name": "Garra Umbría",
+          "baseDamage": 42
+        },
+        {
+          "id": "attack-04",
+          "name": "Vacío",
+          "baseDamage": 52
+        }
+      ],
+      "defense": {
+        "name": "Manto de Sombras",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Abismo Oscuro",
+        "baseDamage": 66,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-shadow.mp3",
+        "defense": "sounds/defense-shadow.mp3",
+        "special": "sounds/special-shadow.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-015",
+      "name": "Phantasm",
+      "type": "Sombra",
+      "image": "images/cards/phantasm.svg",
+      "description": "Espíritu inquieto que paraliza de miedo.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Zarpazo",
+          "baseDamage": 18
+        },
+        {
+          "id": "attack-02",
+          "name": "Niebla Negra",
+          "baseDamage": 28
+        },
+        {
+          "id": "attack-03",
+          "name": "Garra Umbría",
+          "baseDamage": 38
+        },
+        {
+          "id": "attack-04",
+          "name": "Vacío",
+          "baseDamage": 48
+        }
+      ],
+      "defense": {
+        "name": "Manto de Sombras",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Grito Espectral",
+        "baseDamage": 69,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-shadow.mp3",
+        "defense": "sounds/defense-shadow.mp3",
+        "special": "sounds/special-shadow.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-016",
+      "name": "Terraknox",
+      "type": "Tierra",
+      "image": "images/cards/terraknox.svg",
+      "description": "Coloso de piedra que hace temblar el suelo.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Guijarro",
+          "baseDamage": 20
+        },
+        {
+          "id": "attack-02",
+          "name": "Puño Rocoso",
+          "baseDamage": 30
+        },
+        {
+          "id": "attack-03",
+          "name": "Sismo",
+          "baseDamage": 40
+        },
+        {
+          "id": "attack-04",
+          "name": "Meteorito",
+          "baseDamage": 50
+        }
+      ],
+      "defense": {
+        "name": "Armadura de Roca",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Terremoto",
+        "baseDamage": 60,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-earth.mp3",
+        "defense": "sounds/defense-earth.mp3",
+        "special": "sounds/special-earth.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-017",
+      "name": "Granitor",
+      "type": "Tierra",
+      "image": "images/cards/granitor.svg",
+      "description": "Defensor incansable con piel de granito.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Guijarro",
+          "baseDamage": 22
+        },
+        {
+          "id": "attack-02",
+          "name": "Puño Rocoso",
+          "baseDamage": 32
+        },
+        {
+          "id": "attack-03",
+          "name": "Sismo",
+          "baseDamage": 42
+        },
+        {
+          "id": "attack-04",
+          "name": "Meteorito",
+          "baseDamage": 52
+        }
+      ],
+      "defense": {
+        "name": "Armadura de Roca",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Alud de Rocas",
+        "baseDamage": 63,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-earth.mp3",
+        "defense": "sounds/defense-earth.mp3",
+        "special": "sounds/special-earth.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-018",
+      "name": "Ventaro",
+      "type": "Viento",
+      "image": "images/cards/ventaro.svg",
+      "description": "Halcón de las alturas, rápido como el rayo.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Ráfaga",
+          "baseDamage": 18
+        },
+        {
+          "id": "attack-02",
+          "name": "Corte Aéreo",
+          "baseDamage": 28
+        },
+        {
+          "id": "attack-03",
+          "name": "Tornado",
+          "baseDamage": 38
+        },
+        {
+          "id": "attack-04",
+          "name": "Vendaval",
+          "baseDamage": 48
+        }
+      ],
+      "defense": {
+        "name": "Barrera de Aire",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Huracán Cortante",
+        "baseDamage": 66,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-wind.mp3",
+        "defense": "sounds/defense-wind.mp3",
+        "special": "sounds/special-wind.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-019",
+      "name": "Zephyra",
+      "type": "Viento",
+      "image": "images/cards/zephyra.svg",
+      "description": "Danza entre las nubes y nadie logra alcanzarla.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Ráfaga",
+          "baseDamage": 20
+        },
+        {
+          "id": "attack-02",
+          "name": "Corte Aéreo",
+          "baseDamage": 30
+        },
+        {
+          "id": "attack-03",
+          "name": "Tornado",
+          "baseDamage": 40
+        },
+        {
+          "id": "attack-04",
+          "name": "Vendaval",
+          "baseDamage": 50
+        }
+      ],
+      "defense": {
+        "name": "Barrera de Aire",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Ciclón Plateado",
+        "baseDamage": 69,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-wind.mp3",
+        "defense": "sounds/defense-wind.mp3",
+        "special": "sounds/special-wind.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "card-020",
+      "name": "Stormwing",
+      "type": "Viento",
+      "image": "images/cards/stormwing.svg",
+      "description": "Dragón de tormenta que domina el cielo.",
+      "hp": 250,
+      "attacks": [
+        {
+          "id": "attack-01",
+          "name": "Ráfaga",
+          "baseDamage": 22
+        },
+        {
+          "id": "attack-02",
+          "name": "Corte Aéreo",
+          "baseDamage": 32
+        },
+        {
+          "id": "attack-03",
+          "name": "Tornado",
+          "baseDamage": 42
+        },
+        {
+          "id": "attack-04",
+          "name": "Vendaval",
+          "baseDamage": 52
+        }
+      ],
+      "defense": {
+        "name": "Barrera de Aire",
+        "damageReduction": 0.5
+      },
+      "special": {
+        "name": "Tempestad Alada",
+        "baseDamage": 60,
+        "unlockTurn": 2,
+        "cooldown": 3
+      },
+      "sounds": {
+        "attack": "sounds/attack-wind.mp3",
+        "defense": "sounds/defense-wind.mp3",
+        "special": "sounds/special-wind.mp3",
+        "defeated": "sounds/defeated.mp3"
+      },
+      "active": true,
+      "createdAt": "2026-08-18T00:00:00.000Z"
+    }
+  ],
+  "battles": []
+}

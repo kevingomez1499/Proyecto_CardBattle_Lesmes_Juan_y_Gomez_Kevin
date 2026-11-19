@@ -1,0 +1,14 @@
+.auth-card {
+  max-width: 440px; margin: 6vh auto 0; padding: 32px;
+  background: var(--panel); border: 2px solid var(--line); border-radius: var(--radius);
+  box-shadow: 8px 8px 0 #0008;
+}
+.auth-help { color: var(--muted); margin: 8px 0 20px; }
+.auth-form { display: grid; gap: 6px; }
+.auth-form label { font-weight: 600; }
+.auth-form input {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  background: var(--night); border: 2px solid var(--line);
+}
+.auth-form input:focus { border-color: var(--gold); outline: none; }
+.auth-form .btn { margin-top: 8px; }

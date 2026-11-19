@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520">
+<defs><radialGradient id="g" cx="50%" cy="35%" r="80%"><stop offset="0" stop-color="#52d6ff"/><stop offset="1" stop-color="#1646b8"/></radialGradient></defs>
+<rect width="400" height="520" fill="url(#g)"/>
+<circle cx="200" cy="260" r="152" fill="#ffffff22"/>
+<polygon points="110,120 140,40 175,115" fill="#0003"/><polygon points="290,120 260,40 225,115" fill="#0003"/>
+<ellipse cx="200" cy="285" rx="120" ry="106" fill="#0004"/>
+<ellipse cx="200" cy="270" rx="115" ry="105" fill="#1646b8" stroke="#fff8" stroke-width="5"/>
+<circle cx="155" cy="250" r="28" fill="#fff"/><circle cx="245" cy="250" r="28" fill="#fff"/>
+<circle cx="160" cy="254" r="14" fill="#111"/><circle cx="240" cy="254" r="14" fill="#111"/>
+<path d="M155 320 Q200 356 245 320" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round"/>
+<text x="200" y="62" font-size="48" text-anchor="middle">💧</text>
+<text x="200" y="470" font-size="40" font-weight="800" text-anchor="middle" fill="#fff" stroke="#0008" stroke-width="6" paint-order="stroke" font-family="Arial,sans-serif">Coralix</text>
+</svg>
