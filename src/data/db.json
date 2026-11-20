@@ -15,15 +15,24 @@
       "losses": 0,
       "gamesPlayed": 0,
       "createdAt": "2026-11-19T20:54:21.306Z"
+    },
+    {
+      "id": "SfQbX-IkXTI",
+      "nickname": "kevin",
+      "points": 0,
+      "wins": 0,
+      "losses": 0,
+      "gamesPlayed": 0,
+      "createdAt": "2026-11-20T21:46:11.795Z"
     }
   ],
   "cards": [
     {
       "id": "card-001",
-      "name": "Voltaris",
+      "name": "Cocuyomon",
       "type": "Eléctrico",
-      "image": "images/cards/voltaris.svg",
-      "description": "Guardián eléctrico especializado en ataques rápidos.",
+      "image": "images/cards/voltaris.webp",
+      "description": "Insecto luciérnaga que ilumina las noches del trópico",
       "hp": 250,
       "attacks": [
         {
@@ -52,7 +61,7 @@
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Trueno Final",
+        "name": "Súper Descarga del Cocuyo",
         "baseDamage": 63,
         "unlockTurn": 2,
         "cooldown": 3
@@ -979,5 +988,6 @@
       "createdAt": "2026-08-18T00:00:00.000Z"
     }
   ],
-  "battles": []
+  "battles": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

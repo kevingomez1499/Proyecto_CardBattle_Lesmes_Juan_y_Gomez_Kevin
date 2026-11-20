@@ -1,6 +1,6 @@
 # Card Battle Arena
 
-**Integrantes:** _Apellido1 Nombre1_ y _lesmes velez juan sebastian_
+**Integrantes:** gomez zafra kevin ricardo_y_lesmes velez juan sebastian_
 **Temática:** Criaturas elementales (eléctrico, fuego, agua, planta, hielo, sombra, tierra y viento)
 **Enlace publicado:** _(pega aquí tu enlace de GitHub Pages)_
 
