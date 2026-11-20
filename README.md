@@ -2,7 +2,6 @@
 
 **Integrantes:** gomez zafra kevin ricardo_y_lesmes velez juan sebastian_
 **Temática:** Criaturas elementales (eléctrico, fuego, agua, planta, hielo, sombra, tierra y viento)
-**Enlace publicado:** _(pega aquí tu enlace de GitHub Pages)_
 
 ## Descripción
 Juego web de cartas de combate: el jugador se registra con un apodo único, elige y ordena 5 cartas y pelea contra 5 cartas elegidas por la máquina. Los puntos se acumulan en un ranking. Un panel de administración protegido permite gestionar las cartas con un CRUD completo (GET, POST, PUT, PATCH, DELETE) usando Fetch API.
