@@ -17,13 +17,22 @@
       "createdAt": "2026-11-19T20:54:21.306Z"
     },
     {
-      "id": "SfQbX-IkXTI",
+      "id": "FECJ69FQ4yI",
       "nickname": "kevin",
       "points": 0,
       "wins": 0,
       "losses": 0,
       "gamesPlayed": 0,
-      "createdAt": "2026-11-20T21:46:11.795Z"
+      "createdAt": "2026-11-21T16:35:28.239Z"
+    },
+    {
+      "id": "GnLXskXrT14",
+      "nickname": "prueba",
+      "points": 50,
+      "wins": 1,
+      "losses": 0,
+      "gamesPlayed": 1,
+      "createdAt": "2026-11-21T17:31:57.432Z"
     }
   ],
   "cards": [
@@ -31,33 +40,33 @@
       "id": "card-001",
       "name": "Cocuyomon",
       "type": "Eléctrico",
-      "image": "images/cards/voltaris.webp",
-      "description": "Insecto luciérnaga que ilumina las noches del trópico",
+      "image": "images/cards/cocuyomon.svg",
+      "description": "Insecto luciérnaga que ilumina las noches del trópico y suelta descargas desde sus alas.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Chispa",
+          "name": "Destello de Cocuyo",
           "baseDamage": 20
         },
         {
           "id": "attack-02",
-          "name": "Descarga Rápida",
+          "name": "Chispa Tropical",
           "baseDamage": 30
         },
         {
           "id": "attack-03",
-          "name": "Pulso de Trueno",
+          "name": "Zumbido Eléctrico",
           "baseDamage": 40
         },
         {
           "id": "attack-04",
-          "name": "Rompetormentas",
+          "name": "Noche Encendida",
           "baseDamage": 50
         }
       ],
       "defense": {
-        "name": "Escudo Estático",
+        "name": "Caparazón Brillante",
         "damageReduction": 0.5
       },
       "special": {
@@ -77,39 +86,39 @@
     },
     {
       "id": "card-002",
-      "name": "Zapkin",
+      "name": "Ardillamon",
       "type": "Eléctrico",
-      "image": "images/cards/zapkin.svg",
-      "description": "Pequeño y veloz, acumula energía en su cola.",
+      "image": "images/cards/ardillamon.svg",
+      "description": "Ardilla veloz de los bosques de niebla que guarda electricidad en su cola esponjosa.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Chispa",
+          "name": "Cosquilla Eléctrica",
           "baseDamage": 22
         },
         {
           "id": "attack-02",
-          "name": "Descarga Rápida",
+          "name": "Cola Chispeante",
           "baseDamage": 32
         },
         {
           "id": "attack-03",
-          "name": "Pulso de Trueno",
+          "name": "Salto de Rayo",
           "baseDamage": 42
         },
         {
           "id": "attack-04",
-          "name": "Rompetormentas",
+          "name": "Trueno de Bosque",
           "baseDamage": 52
         }
       ],
       "defense": {
-        "name": "Escudo Estático",
+        "name": "Cola Aislante",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Tormenta Chispa",
+        "name": "Trueno de Cola Grande",
         "baseDamage": 66,
         "unlockTurn": 2,
         "cooldown": 3
@@ -125,39 +134,39 @@
     },
     {
       "id": "card-003",
-      "name": "Pyronox",
+      "name": "Ajimon",
       "type": "Fuego",
-      "image": "images/cards/pyronox.svg",
-      "description": "Bestia volcánica que no conoce el cansancio.",
+      "image": "images/cards/ajimon.svg",
+      "description": "Pequeño dinosaurio naranja que escupe un aliento de ají picante.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Brasa",
+          "name": "Chispa de Ají",
           "baseDamage": 18
         },
         {
           "id": "attack-02",
-          "name": "Llamarada",
+          "name": "Mordisco Picante",
           "baseDamage": 28
         },
         {
           "id": "attack-03",
-          "name": "Bola de Fuego",
+          "name": "Llamarada de Sazón",
           "baseDamage": 38
         },
         {
           "id": "attack-04",
-          "name": "Lanza Ígnea",
+          "name": "Bola de Rocoto",
           "baseDamage": 48
         }
       ],
       "defense": {
-        "name": "Muro de Calor",
+        "name": "Muralla de Brasa",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Erupción Solar",
+        "name": "Aliento de Ají Extremo",
         "baseDamage": 69,
         "unlockTurn": 2,
         "cooldown": 3
@@ -173,39 +182,39 @@
     },
     {
       "id": "card-004",
-      "name": "Embrix",
+      "name": "Guacamayamon",
       "type": "Fuego",
-      "image": "images/cards/embrix.svg",
-      "description": "Un zorro de brasas que quema todo a su paso.",
+      "image": "images/cards/guacamayamon.svg",
+      "description": "Guacamaya de fuego que cruza el cielo dejando una estela de llamas de colores.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Brasa",
+          "name": "Pluma Ardiente",
           "baseDamage": 20
         },
         {
           "id": "attack-02",
-          "name": "Llamarada",
+          "name": "Vuelo Rasante",
           "baseDamage": 30
         },
         {
           "id": "attack-03",
-          "name": "Bola de Fuego",
+          "name": "Graznido de Selva",
           "baseDamage": 40
         },
         {
           "id": "attack-04",
-          "name": "Lanza Ígnea",
+          "name": "Ala de Candela",
           "baseDamage": 50
         }
       ],
       "defense": {
-        "name": "Muro de Calor",
+        "name": "Plumaje Ígneo",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Llamarada Infernal",
+        "name": "Meteoro de Guacamaya",
         "baseDamage": 60,
         "unlockTurn": 2,
         "cooldown": 3
@@ -221,39 +230,39 @@
     },
     {
       "id": "card-005",
-      "name": "Flamera",
+      "name": "Candelamon",
       "type": "Fuego",
-      "image": "images/cards/flamera.svg",
-      "description": "Ave legendaria que renace de sus cenizas.",
+      "image": "images/cards/candelamon.svg",
+      "description": "Llama viva nacida de una fogata de arriero que no se apaga ni con aguacero.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Brasa",
+          "name": "Chispa de Fogata",
           "baseDamage": 22
         },
         {
           "id": "attack-02",
-          "name": "Llamarada",
+          "name": "Puño de Brasa",
           "baseDamage": 32
         },
         {
           "id": "attack-03",
-          "name": "Bola de Fuego",
+          "name": "Lengua de Candela",
           "baseDamage": 42
         },
         {
           "id": "attack-04",
-          "name": "Lanza Ígnea",
+          "name": "Hoguera Furiosa",
           "baseDamage": 52
         }
       ],
       "defense": {
-        "name": "Muro de Calor",
+        "name": "Cortina de Humo",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Fénix Ardiente",
+        "name": "Gran Incendio Arriero",
         "baseDamage": 63,
         "unlockTurn": 2,
         "cooldown": 3
@@ -269,39 +278,39 @@
     },
     {
       "id": "card-006",
-      "name": "Aquaros",
+      "name": "Manatimon",
       "type": "Agua",
-      "image": "images/cards/aquaros.svg",
-      "description": "Rey de los océanos, calmado hasta que se enfada.",
+      "image": "images/cards/manatimon.svg",
+      "description": "Manatí juguetón del río Magdalena, amigo de los pescadores.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Chorro",
+          "name": "Chorro de Río",
           "baseDamage": 18
         },
         {
           "id": "attack-02",
-          "name": "Ola Veloz",
+          "name": "Coletazo Suave",
           "baseDamage": 28
         },
         {
           "id": "attack-03",
-          "name": "Cascada",
+          "name": "Cardumen Saltarín",
           "baseDamage": 38
         },
         {
           "id": "attack-04",
-          "name": "Presión Abisal",
+          "name": "Remolino del Magdalena",
           "baseDamage": 48
         }
       ],
       "defense": {
-        "name": "Burbuja Protectora",
+        "name": "Burbuja de Ciénaga",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Tsunami Real",
+        "name": "Estampida de Bocachicos",
         "baseDamage": 66,
         "unlockTurn": 2,
         "cooldown": 3
@@ -317,39 +326,39 @@
     },
     {
       "id": "card-007",
-      "name": "Marenko",
+      "name": "Mohanmon",
       "type": "Agua",
-      "image": "images/cards/marenko.svg",
-      "description": "Habitante de las profundidades más oscuras.",
+      "image": "images/cards/mohanmon.svg",
+      "description": "Serpiente de agua inspirada en el Mohán, el espíritu de los ríos y las lagunas.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Chorro",
+          "name": "Salpicón",
           "baseDamage": 20
         },
         {
           "id": "attack-02",
-          "name": "Ola Veloz",
+          "name": "Latigazo de Río",
           "baseDamage": 30
         },
         {
           "id": "attack-03",
-          "name": "Cascada",
+          "name": "Ola de Laguna",
           "baseDamage": 40
         },
         {
           "id": "attack-04",
-          "name": "Presión Abisal",
+          "name": "Mordisco del Abismo",
           "baseDamage": 50
         }
       ],
       "defense": {
-        "name": "Burbuja Protectora",
+        "name": "Escama de Laguna",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Torbellino Abisal",
+        "name": "Dardo del Mohán",
         "baseDamage": 69,
         "unlockTurn": 2,
         "cooldown": 3
@@ -365,39 +374,39 @@
     },
     {
       "id": "card-008",
-      "name": "Coralix",
+      "name": "Ballenamon",
       "type": "Agua",
-      "image": "images/cards/coralix.svg",
-      "description": "Su caparazón de coral desvía cualquier golpe.",
+      "image": "images/cards/ballenamon.svg",
+      "description": "Ballena jorobada del Pacífico colombiano cuyo canto se oye a kilómetros.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Chorro",
+          "name": "Soplo de Ballena",
           "baseDamage": 22
         },
         {
           "id": "attack-02",
-          "name": "Ola Veloz",
+          "name": "Salto Gigante",
           "baseDamage": 32
         },
         {
           "id": "attack-03",
-          "name": "Cascada",
+          "name": "Canto de Jorobada",
           "baseDamage": 42
         },
         {
           "id": "attack-04",
-          "name": "Presión Abisal",
+          "name": "Marea Mayor",
           "baseDamage": 52
         }
       ],
       "defense": {
-        "name": "Burbuja Protectora",
+        "name": "Barrera de Espuma",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Marea Cristal",
+        "name": "Tsunami del Pacífico",
         "baseDamage": 60,
         "unlockTurn": 2,
         "cooldown": 3
@@ -413,39 +422,39 @@
     },
     {
       "id": "card-009",
-      "name": "Floralis",
+      "name": "Ceramon",
       "type": "Planta",
-      "image": "images/cards/floralis.svg",
-      "description": "Guardiana del bosque con flores venenosas.",
+      "image": "images/cards/ceramon.svg",
+      "description": "Palma de cera de los bosques de niebla; sus lianas atrapan sin lastimar.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Latigazo",
+          "name": "Hojarasca",
           "baseDamage": 18
         },
         {
           "id": "attack-02",
-          "name": "Hoja Afilada",
+          "name": "Liana Veloz",
           "baseDamage": 28
         },
         {
           "id": "attack-03",
-          "name": "Espinas",
+          "name": "Polen del Cafetal",
           "baseDamage": 38
         },
         {
           "id": "attack-04",
-          "name": "Rayo Solar",
+          "name": "Espina de Bejuco",
           "baseDamage": 48
         }
       ],
       "defense": {
-        "name": "Corteza Dura",
+        "name": "Corteza de Cera",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Jardín Espinoso",
+        "name": "Zarcillo de Bejuco Venenoso",
         "baseDamage": 63,
         "unlockTurn": 2,
         "cooldown": 3
@@ -461,39 +470,39 @@
     },
     {
       "id": "card-010",
-      "name": "Verdant",
+      "name": "Tatacoamon",
       "type": "Planta",
-      "image": "images/cards/verdant.svg",
-      "description": "Árbol ancestral que despierta cuando lo necesitan.",
+      "image": "images/cards/tatacoamon.svg",
+      "description": "Cactus guerrero del desierto de la Tatacoa que dispara espinas a gran velocidad.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Latigazo",
+          "name": "Espina Seca",
           "baseDamage": 20
         },
         {
           "id": "attack-02",
-          "name": "Hoja Afilada",
+          "name": "Puño de Cactus",
           "baseDamage": 30
         },
         {
           "id": "attack-03",
-          "name": "Espinas",
+          "name": "Aguja del Desierto",
           "baseDamage": 40
         },
         {
           "id": "attack-04",
-          "name": "Rayo Solar",
+          "name": "Sol de Tatacoa",
           "baseDamage": 50
         }
       ],
       "defense": {
-        "name": "Corteza Dura",
+        "name": "Piel de Espinas",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Raíz Colosal",
+        "name": "Lluvia de Agujas de la Tatacoa",
         "baseDamage": 66,
         "unlockTurn": 2,
         "cooldown": 3
@@ -509,39 +518,39 @@
     },
     {
       "id": "card-011",
-      "name": "Frostal",
+      "name": "Nevadomon",
       "type": "Hielo",
-      "image": "images/cards/frostal.svg",
-      "description": "Lobo de escarcha que ruge con vientos helados.",
+      "image": "images/cards/nevadomon.svg",
+      "description": "Muñeco de nieve del Nevado del Cocuy, helado por fuera y de gran corazón.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Escarcha",
+          "name": "Copo de Nieve",
           "baseDamage": 22
         },
         {
           "id": "attack-02",
-          "name": "Lanza de Hielo",
+          "name": "Bola de Nieve",
           "baseDamage": 32
         },
         {
           "id": "attack-03",
-          "name": "Aliento Gélido",
+          "name": "Puño Escarchado",
           "baseDamage": 42
         },
         {
           "id": "attack-04",
-          "name": "Avalancha",
+          "name": "Ventisca del Cocuy",
           "baseDamage": 52
         }
       ],
       "defense": {
-        "name": "Muro de Hielo",
+        "name": "Muro de Nieve",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Ventisca Eterna",
+        "name": "Puño de Hielo del Nevado",
         "baseDamage": 69,
         "unlockTurn": 2,
         "cooldown": 3
@@ -557,39 +566,39 @@
     },
     {
       "id": "card-012",
-      "name": "Glaciar",
+      "name": "Paramomon",
       "type": "Hielo",
-      "image": "images/cards/glaciar.svg",
-      "description": "Gigante de hielo imposible de mover.",
+      "image": "images/cards/paramomon.svg",
+      "description": "Lobo plateado del páramo que aúlla con los vientos helados de las alturas.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Escarcha",
+          "name": "Zarpa Escarchada",
           "baseDamage": 18
         },
         {
           "id": "attack-02",
-          "name": "Lanza de Hielo",
+          "name": "Aullido Helado",
           "baseDamage": 28
         },
         {
           "id": "attack-03",
-          "name": "Aliento Gélido",
+          "name": "Mordida de Escarcha",
           "baseDamage": 38
         },
         {
           "id": "attack-04",
-          "name": "Avalancha",
+          "name": "Neblina del Páramo",
           "baseDamage": 48
         }
       ],
       "defense": {
-        "name": "Muro de Hielo",
+        "name": "Pelaje de Escarcha",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Cero Absoluto",
+        "name": "Aullido del Gran Páramo",
         "baseDamage": 60,
         "unlockTurn": 2,
         "cooldown": 3
@@ -605,39 +614,39 @@
     },
     {
       "id": "card-013",
-      "name": "Nocturne",
+      "name": "Lloronamon",
       "type": "Sombra",
-      "image": "images/cards/nocturne.svg",
-      "description": "Cazador que solo ataca cuando cae la noche.",
+      "image": "images/cards/lloronamon.svg",
+      "description": "Fantasma de las orillas del río cuyo lamento paraliza a quien lo escucha.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Zarpazo",
+          "name": "Susurro Helado",
           "baseDamage": 20
         },
         {
           "id": "attack-02",
-          "name": "Niebla Negra",
+          "name": "Sábana Espectral",
           "baseDamage": 30
         },
         {
           "id": "attack-03",
-          "name": "Garra Umbría",
+          "name": "Lamento Nocturno",
           "baseDamage": 40
         },
         {
           "id": "attack-04",
-          "name": "Vacío",
+          "name": "Grito del Río",
           "baseDamage": 50
         }
       ],
       "defense": {
-        "name": "Manto de Sombras",
+        "name": "Velo de Niebla",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Eclipse Total",
+        "name": "Lamento de la Llorona",
         "baseDamage": 63,
         "unlockTurn": 2,
         "cooldown": 3
@@ -653,39 +662,39 @@
     },
     {
       "id": "card-014",
-      "name": "Umbrax",
+      "name": "Mandingamon",
       "type": "Sombra",
-      "image": "images/cards/umbrax.svg",
-      "description": "Criatura sin forma que se esconde en las sombras.",
+      "image": "images/cards/mandingamon.svg",
+      "description": "Demonio astuto de las leyendas del Caribe que hace pactos a cambio de almas.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Zarpazo",
+          "name": "Zarpazo Maldito",
           "baseDamage": 22
         },
         {
           "id": "attack-02",
-          "name": "Niebla Negra",
+          "name": "Trato Oscuro",
           "baseDamage": 32
         },
         {
           "id": "attack-03",
-          "name": "Garra Umbría",
+          "name": "Ala de Humo",
           "baseDamage": 42
         },
         {
           "id": "attack-04",
-          "name": "Vacío",
+          "name": "Pacto de Sombras",
           "baseDamage": 52
         }
       ],
       "defense": {
-        "name": "Manto de Sombras",
+        "name": "Capa de Azufre",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Abismo Oscuro",
+        "name": "Maldición de Mandinga",
         "baseDamage": 66,
         "unlockTurn": 2,
         "cooldown": 3
@@ -701,39 +710,39 @@
     },
     {
       "id": "card-015",
-      "name": "Phantasm",
+      "name": "Silbonmon",
       "type": "Sombra",
-      "image": "images/cards/phantasm.svg",
-      "description": "Espíritu inquieto que paraliza de miedo.",
+      "image": "images/cards/silbonmon.svg",
+      "description": "Figura alta y oscura que silba entre la niebla de los llanos; quien lo oye siente terror.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Zarpazo",
+          "name": "Silbido Lejano",
           "baseDamage": 18
         },
         {
           "id": "attack-02",
-          "name": "Niebla Negra",
+          "name": "Hueso Filoso",
           "baseDamage": 28
         },
         {
           "id": "attack-03",
-          "name": "Garra Umbría",
+          "name": "Sombra del Llano",
           "baseDamage": 38
         },
         {
           "id": "attack-04",
-          "name": "Vacío",
+          "name": "Capa Nocturna",
           "baseDamage": 48
         }
       ],
       "defense": {
-        "name": "Manto de Sombras",
+        "name": "Manto de Murciélagos",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Grito Espectral",
+        "name": "Silbido Final del Llano",
         "baseDamage": 69,
         "unlockTurn": 2,
         "cooldown": 3
@@ -749,39 +758,39 @@
     },
     {
       "id": "card-016",
-      "name": "Terraknox",
+      "name": "Esmeraldamon",
       "type": "Tierra",
-      "image": "images/cards/terraknox.svg",
-      "description": "Coloso de piedra que hace temblar el suelo.",
+      "image": "images/cards/esmeraldamon.svg",
+      "description": "Topo minero de las minas de esmeraldas cuyos taladros arrancan piedras y daño.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Guijarro",
+          "name": "Pica y Pala",
           "baseDamage": 20
         },
         {
           "id": "attack-02",
-          "name": "Puño Rocoso",
+          "name": "Taladro Menor",
           "baseDamage": 30
         },
         {
           "id": "attack-03",
-          "name": "Sismo",
+          "name": "Derrumbe",
           "baseDamage": 40
         },
         {
           "id": "attack-04",
-          "name": "Meteorito",
+          "name": "Veta de Esmeralda",
           "baseDamage": 50
         }
       ],
       "defense": {
-        "name": "Armadura de Roca",
+        "name": "Casco de Minero",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Terremoto",
+        "name": "Taladro de Esmeralda",
         "baseDamage": 60,
         "unlockTurn": 2,
         "cooldown": 3
@@ -797,39 +806,39 @@
     },
     {
       "id": "card-017",
-      "name": "Granitor",
+      "name": "Monolitomon",
       "type": "Tierra",
-      "image": "images/cards/granitor.svg",
-      "description": "Defensor incansable con piel de granito.",
+      "image": "images/cards/monolitomon.svg",
+      "description": "Gigante de piedra con aspecto de monolito de San Agustín, guardián de secretos antiguos.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Guijarro",
+          "name": "Pisotón",
           "baseDamage": 22
         },
         {
           "id": "attack-02",
-          "name": "Puño Rocoso",
+          "name": "Cabezazo de Piedra",
           "baseDamage": 32
         },
         {
           "id": "attack-03",
-          "name": "Sismo",
+          "name": "Roca Ancestral",
           "baseDamage": 42
         },
         {
           "id": "attack-04",
-          "name": "Meteorito",
+          "name": "Sismo de San Agustín",
           "baseDamage": 52
         }
       ],
       "defense": {
-        "name": "Armadura de Roca",
+        "name": "Coraza de Basalto",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Alud de Rocas",
+        "name": "Estampida de Piedra",
         "baseDamage": 63,
         "unlockTurn": 2,
         "cooldown": 3
@@ -845,39 +854,39 @@
     },
     {
       "id": "card-018",
-      "name": "Ventaro",
+      "name": "Cóndormon",
       "type": "Viento",
-      "image": "images/cards/ventaro.svg",
-      "description": "Halcón de las alturas, rápido como el rayo.",
+      "image": "images/cards/condormon.svg",
+      "description": "Cóndor de los Andes, rey del cielo colombiano que planea sobre cumbres y cañones.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Ráfaga",
+          "name": "Ráfaga Andina",
           "baseDamage": 18
         },
         {
           "id": "attack-02",
-          "name": "Corte Aéreo",
+          "name": "Corte de Ala",
           "baseDamage": 28
         },
         {
           "id": "attack-03",
-          "name": "Tornado",
+          "name": "Planeo Letal",
           "baseDamage": 38
         },
         {
           "id": "attack-04",
-          "name": "Vendaval",
+          "name": "Vendaval de Cumbre",
           "baseDamage": 48
         }
       ],
       "defense": {
-        "name": "Barrera de Aire",
+        "name": "Barrera de Plumas",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Huracán Cortante",
+        "name": "Vuelo del Cóndor Real",
         "baseDamage": 66,
         "unlockTurn": 2,
         "cooldown": 3
@@ -893,39 +902,39 @@
     },
     {
       "id": "card-019",
-      "name": "Zephyra",
+      "name": "Colibrimon",
       "type": "Viento",
-      "image": "images/cards/zephyra.svg",
-      "description": "Danza entre las nubes y nadie logra alcanzarla.",
+      "image": "images/cards/colibrimon.svg",
+      "description": "Colibrí pequeñito y veloz que aletea tan rápido que nadie logra atraparlo.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Ráfaga",
+          "name": "Picotazo Rápido",
           "baseDamage": 20
         },
         {
           "id": "attack-02",
-          "name": "Corte Aéreo",
+          "name": "Aleteo Veloz",
           "baseDamage": 30
         },
         {
           "id": "attack-03",
-          "name": "Tornado",
+          "name": "Torbellino de Néctar",
           "baseDamage": 40
         },
         {
           "id": "attack-04",
-          "name": "Vendaval",
+          "name": "Remolino de Flores",
           "baseDamage": 50
         }
       ],
       "defense": {
-        "name": "Barrera de Aire",
+        "name": "Esquive de Colibrí",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Ciclón Plateado",
+        "name": "Torbellino Espiral",
         "baseDamage": 69,
         "unlockTurn": 2,
         "cooldown": 3
@@ -941,39 +950,39 @@
     },
     {
       "id": "card-020",
-      "name": "Stormwing",
+      "name": "Ventarronmon",
       "type": "Viento",
-      "image": "images/cards/stormwing.svg",
-      "description": "Dragón de tormenta que domina el cielo.",
+      "image": "images/cards/ventarronmon.svg",
+      "description": "Dragón de los ventarrones del cañón que domina todas las corrientes de aire.",
       "hp": 250,
       "attacks": [
         {
           "id": "attack-01",
-          "name": "Ráfaga",
+          "name": "Soplo Fuerte",
           "baseDamage": 22
         },
         {
           "id": "attack-02",
-          "name": "Corte Aéreo",
+          "name": "Latigazo de Viento",
           "baseDamage": 32
         },
         {
           "id": "attack-03",
-          "name": "Tornado",
+          "name": "Ciclón del Cañón",
           "baseDamage": 42
         },
         {
           "id": "attack-04",
-          "name": "Vendaval",
+          "name": "Tempestad de Cumbre",
           "baseDamage": 52
         }
       ],
       "defense": {
-        "name": "Barrera de Aire",
+        "name": "Pared de Aire",
         "damageReduction": 0.5
       },
       "special": {
-        "name": "Tempestad Alada",
+        "name": "Ventarrón Supremo",
         "baseDamage": 60,
         "unlockTurn": 2,
         "cooldown": 3
@@ -988,6 +997,30 @@
       "createdAt": "2026-08-18T00:00:00.000Z"
     }
   ],
-  "battles": [],
+  "battles": [
+    {
+      "id": "3BpryZp-fxk",
+      "playerId": "GnLXskXrT14",
+      "nickname": "prueba",
+      "result": "win",
+      "pointsAwarded": 50,
+      "playerDeck": [
+        "card-001",
+        "card-007",
+        "card-011",
+        "card-009",
+        "card-006"
+      ],
+      "machineDeck": [
+        "card-010",
+        "card-004",
+        "card-018",
+        "card-013",
+        "card-014"
+      ],
+      "startedAt": "2026-11-21T17:33:48.139Z",
+      "finishedAt": "2026-11-21T17:37:06.773Z"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
