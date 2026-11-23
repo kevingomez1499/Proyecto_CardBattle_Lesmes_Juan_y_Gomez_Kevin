@@ -33,6 +33,15 @@
       "losses": 0,
       "gamesPlayed": 1,
       "createdAt": "2026-11-21T17:31:57.432Z"
+    },
+    {
+      "id": "UmEaSWM6uH4",
+      "nickname": "test",
+      "points": 0,
+      "wins": 0,
+      "losses": 0,
+      "gamesPlayed": 0,
+      "createdAt": "2026-11-23T21:10:15.796Z"
     }
   ],
   "cards": [
@@ -1020,6 +1029,29 @@
       ],
       "startedAt": "2026-11-21T17:33:48.139Z",
       "finishedAt": "2026-11-21T17:37:06.773Z"
+    },
+    {
+      "id": "4FSPIrHkVi8",
+      "playerId": "Q0pGUZFdjkQ",
+      "nickname": "jugador2",
+      "result": "win",
+      "pointsAwarded": 50,
+      "playerDeck": [
+        "card-019",
+        "card-015",
+        "card-010",
+        "card-005",
+        "card-008"
+      ],
+      "machineDeck": [
+        "card-017",
+        "card-012",
+        "card-001",
+        "card-009",
+        "card-003"
+      ],
+      "startedAt": "2026-11-22T23:56:35.610Z",
+      "finishedAt": "2026-11-22T23:59:43.458Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
