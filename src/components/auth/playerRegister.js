@@ -1,7 +1,7 @@
 import { findPlayerByNickname, postPlayer } from '../../api/playersApi.js';
 import { validateNickname } from '../../utils/validators.js';
 
-// Registro del jugador con apodo único (se valida consultando la API)
+// Entrada o registro del jugador con apodo único (se valida consultando la API)
 export class PlayerRegister extends HTMLElement {
   constructor() {
     super();
@@ -13,12 +13,12 @@ export class PlayerRegister extends HTMLElement {
     this.innerHTML = /* html */ `
       <section class="auth-card">
         <h2>Entra a la arena</h2>
-        <p class="auth-help">Elige un apodo único. Con él acumularás puntos en el ranking.</p>
+        <p class="auth-help">Escribe tu apodo para entrar o crear uno nuevo y acumular puntos en el ranking.</p>
         <form class="auth-form" novalidate>
           <label for="nickname">Apodo</label>
           <input id="nickname" name="nickname" type="text" maxlength="16" autocomplete="off" placeholder="Ej: JCMASTER" />
           <p class="form-msg" role="alert" aria-live="polite"></p>
-          <button class="btn btn-primary" type="submit">Registrarme y jugar</button>
+          <button class="btn btn-primary" type="submit">Entrar a jugar</button>
         </form>
       </section>`;
   }
@@ -44,10 +44,16 @@ export class PlayerRegister extends HTMLElement {
       try {
         const existing = await findPlayerByNickname(nickname); // GET
         if (existing) {
-          this.setMessage('Ese apodo ya está en uso. Elige otro.');
-          button.disabled = false;
+          this.setMessage(`¡Bienvenido de nuevo, ${existing.nickname}! Cargando historial…`, 'info');
+          this.dispatchEvent(
+            new CustomEvent('player-registered', {
+              detail: { player: existing, isReturning: true },
+              bubbles: true,
+            })
+          );
           return;
         }
+
         const player = await postPlayer({
           id: `player-${Date.now().toString(36)}`,
           nickname,
@@ -57,7 +63,13 @@ export class PlayerRegister extends HTMLElement {
           gamesPlayed: 0,
           createdAt: new Date().toISOString(),
         }); // POST
-        this.dispatchEvent(new CustomEvent('player-registered', { detail: { player }, bubbles: true }));
+
+        this.dispatchEvent(
+          new CustomEvent('player-registered', {
+            detail: { player, isReturning: false },
+            bubbles: true,
+          })
+        );
       } catch (err) {
         console.error(err);
         this.setMessage('No se pudo conectar con el servidor. ¿Está encendido (npm run server)?');

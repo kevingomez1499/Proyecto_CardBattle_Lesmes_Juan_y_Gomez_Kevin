@@ -42,6 +42,60 @@
       "losses": 0,
       "gamesPlayed": 0,
       "createdAt": "2026-11-23T21:10:15.796Z"
+    },
+    {
+      "id": "2KJqCa8-URI",
+      "nickname": "juense",
+      "points": 50,
+      "wins": 1,
+      "losses": 0,
+      "gamesPlayed": 1,
+      "createdAt": "2026-11-23T21:18:03.047Z"
+    },
+    {
+      "id": "dxWe3s7Rifo",
+      "nickname": "sebastian",
+      "points": 0,
+      "wins": 0,
+      "losses": 0,
+      "gamesPlayed": 0,
+      "createdAt": "2026-11-23T21:24:24.488Z"
+    },
+    {
+      "id": "I88G0jzESu8",
+      "nickname": "juanse",
+      "points": 0,
+      "wins": 0,
+      "losses": 0,
+      "gamesPlayed": 0,
+      "createdAt": "2026-11-23T21:25:55.101Z"
+    },
+    {
+      "id": "mc0AcgfvR2g",
+      "nickname": "juanpa",
+      "points": 0,
+      "wins": 0,
+      "losses": 0,
+      "gamesPlayed": 0,
+      "createdAt": "2026-11-23T21:28:05.509Z"
+    },
+    {
+      "id": "3-k2YX9cC1Y",
+      "nickname": "andres",
+      "points": 0,
+      "wins": 0,
+      "losses": 0,
+      "gamesPlayed": 0,
+      "createdAt": "2026-11-23T21:28:18.864Z"
+    },
+    {
+      "id": "bOsOZpZ1YuQ",
+      "nickname": "sofia",
+      "points": 50,
+      "wins": 1,
+      "losses": 0,
+      "gamesPlayed": 1,
+      "createdAt": "2026-11-23T21:31:35.623Z"
     }
   ],
   "cards": [
@@ -1052,6 +1106,52 @@
       ],
       "startedAt": "2026-11-22T23:56:35.610Z",
       "finishedAt": "2026-11-22T23:59:43.458Z"
+    },
+    {
+      "id": "emXGC7SRFXU",
+      "playerId": "2KJqCa8-URI",
+      "nickname": "juense",
+      "result": "win",
+      "pointsAwarded": 50,
+      "playerDeck": [
+        "card-001",
+        "card-002",
+        "card-003",
+        "card-004",
+        "card-005"
+      ],
+      "machineDeck": [
+        "card-006",
+        "card-011",
+        "card-008",
+        "card-010",
+        "card-020"
+      ],
+      "startedAt": "2026-11-23T21:18:12.330Z",
+      "finishedAt": "2026-11-23T21:20:28.378Z"
+    },
+    {
+      "id": "K1YUOLhcUeU",
+      "playerId": "bOsOZpZ1YuQ",
+      "nickname": "sofia",
+      "result": "win",
+      "pointsAwarded": 50,
+      "playerDeck": [
+        "card-001",
+        "card-002",
+        "card-003",
+        "card-004",
+        "card-005"
+      ],
+      "machineDeck": [
+        "card-010",
+        "card-015",
+        "card-011",
+        "card-012",
+        "card-019"
+      ],
+      "startedAt": "2026-11-23T21:57:34.405Z",
+      "finishedAt": "2026-11-23T21:59:48.405Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
