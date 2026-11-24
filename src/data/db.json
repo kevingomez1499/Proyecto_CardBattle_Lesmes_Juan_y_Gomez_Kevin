@@ -44,13 +44,13 @@
       "createdAt": "2026-11-23T21:10:15.796Z"
     },
     {
-      "id": "TpHom3BEa58",
-      "nickname": "kevin go",
+      "id": "mJefzKKgEh8",
+      "nickname": "sofia",
       "points": 0,
       "wins": 0,
       "losses": 0,
       "gamesPlayed": 0,
-      "createdAt": "2026-11-23T22:28:41.879Z"
+      "createdAt": "2026-11-23T22:53:10.085Z"
     }
   ],
   "cards": [
@@ -1061,6 +1061,52 @@
       ],
       "startedAt": "2026-11-22T23:56:35.610Z",
       "finishedAt": "2026-11-22T23:59:43.458Z"
+    },
+    {
+      "id": "emXGC7SRFXU",
+      "playerId": "2KJqCa8-URI",
+      "nickname": "juense",
+      "result": "win",
+      "pointsAwarded": 50,
+      "playerDeck": [
+        "card-001",
+        "card-002",
+        "card-003",
+        "card-004",
+        "card-005"
+      ],
+      "machineDeck": [
+        "card-006",
+        "card-011",
+        "card-008",
+        "card-010",
+        "card-020"
+      ],
+      "startedAt": "2026-11-23T21:18:12.330Z",
+      "finishedAt": "2026-11-23T21:20:28.378Z"
+    },
+    {
+      "id": "K1YUOLhcUeU",
+      "playerId": "bOsOZpZ1YuQ",
+      "nickname": "sofia",
+      "result": "win",
+      "pointsAwarded": 50,
+      "playerDeck": [
+        "card-001",
+        "card-002",
+        "card-003",
+        "card-004",
+        "card-005"
+      ],
+      "machineDeck": [
+        "card-010",
+        "card-015",
+        "card-011",
+        "card-012",
+        "card-019"
+      ],
+      "startedAt": "2026-11-23T21:57:34.405Z",
+      "finishedAt": "2026-11-23T21:59:48.405Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

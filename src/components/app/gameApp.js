@@ -4,7 +4,7 @@ import '../cards/cards.js';
 import '../deck/deckSelector.js';
 import '../battle/battle.js';
 import '../leaderboard/leaderboard.js';
-import { getPlayer } from '../../api/playersApi.js';
+import { getPlayer, addPlayerMatchResult } from '../../api/playersApi.js';
 import { escapeHtml } from '../../utils/assets.js';
 
 // Crea un componente "vacío" y le asigna propiedades antes de mostrarlo.
@@ -59,6 +59,7 @@ export class GameApp extends HTMLElement {
     try {
       player ? sessionStorage.setItem('playerId', player.id) : sessionStorage.removeItem('playerId');
     } catch { /* sin sessionStorage */ }
+    this.updateChrome();
   }
 
   // Cambia de pantalla creando el componente correspondiente
@@ -88,7 +89,7 @@ export class GameApp extends HTMLElement {
       b.setAttribute('aria-current', b.dataset.nav === active ? 'page' : 'false')
     );
     this.querySelector('[data-who]').innerHTML = this.player
-      ? `<span class="chip">👤 ${escapeHtml(this.player.nickname)} · ${this.player.points} pts</span>
+      ? `<span class="chip">👤 ${escapeHtml(this.player.nickname)} · ${this.player.points ?? 0} pts</span>
          <button class="link-btn" data-switch>Cambiar jugador</button>`
       : '';
   }
@@ -117,9 +118,33 @@ export class GameApp extends HTMLElement {
       this.show('battle');
     });
 
-    this.addEventListener('battle-finished', (e) => {
-      this.setPlayer(e.detail.player);
-      this.show(e.detail.next);
+    this.addEventListener('battle-finished', async (e) => {
+      const detail = e.detail || {};
+      const playerId = detail.player?.id || this.player?.id;
+
+      // Si el evento trae datos de resultado (won, points / earnedPoints), suma al historial en la API
+      const hasResultPayload =
+        typeof detail.won === 'boolean' ||
+        typeof detail.points === 'number' ||
+        typeof detail.earnedPoints === 'number';
+
+      if (playerId && hasResultPayload) {
+        try {
+          const earned = detail.earnedPoints ?? detail.points ?? 0;
+          const updated = await addPlayerMatchResult(playerId, {
+            won: Boolean(detail.won),
+            points: earned,
+          });
+          this.setPlayer(updated);
+        } catch (err) {
+          console.error('Error actualizando historial del jugador:', err);
+          if (detail.player) this.setPlayer(detail.player);
+        }
+      } else if (detail.player) {
+        this.setPlayer(detail.player);
+      }
+
+      this.show(detail.next || 'leaderboard');
     });
 
     this.addEventListener('admin-login', () => {
