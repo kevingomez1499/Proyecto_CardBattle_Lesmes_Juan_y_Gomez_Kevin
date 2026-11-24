@@ -1,6 +1,8 @@
 # Card Battle Arena
 
 **Integrantes:** gomez zafra kevin ricardo_y_lesmes velez juan sebastian_
+**despliegue github pages:** https://kevingomez1499.github.io/Proyecto_CardBattle_Lesmes_Juan_y_Gomez_Kevin/ 
+(npm run server activo en terminal del proyecto)
 **Temática:** Criaturas elementales (eléctrico, fuego, agua, planta, hielo, sombra, tierra y viento)
 
 ## Descripción
