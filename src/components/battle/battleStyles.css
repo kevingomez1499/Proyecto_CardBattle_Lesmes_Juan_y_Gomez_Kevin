@@ -172,3 +172,7 @@ battle-card { display: block; width: min(300px, 100%); }
   40%  { transform: translateX(40px); opacity: 0.4; }
   100% { transform: translateX(0); opacity: 1; }
 }
+.mode-selector { display: flex; gap: 0.4rem; }
+.mode-selector .active { outline: 2px solid #ffb300; font-weight: 700; }
+.is-auto battle-controls { opacity: 0.5; pointer-events: none; }
+.is-auto .turn-banner::before { content: '🤖 AUTO · '; font-weight: 800; }

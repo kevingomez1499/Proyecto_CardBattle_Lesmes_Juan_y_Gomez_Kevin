@@ -13,22 +13,27 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const other = (side) => (side === 'player' ? 'machine' : 'player');
 const NAMES = { player: 'Tú', machine: 'La máquina' };
 
-// Componente principal del combate.
-// Antes de añadirlo al DOM se le asigna:  el.setup = { player, playerCards, machineCards }
+
 export class CardBattle extends HTMLElement {
   constructor() {
     super();
     this.finished = false;
     this.busy = true;
+    this.mode = 'manual';
+    this.autoTimer = null; 
     this.render();
     this.setupEvents();
   }
 
   render() {
-    this.innerHTML = /* html */ `
+    this.innerHTML =  `
       <section class="battle">
         <div class="battle-top">
           <p class="turn-banner" role="status" aria-live="polite">Preparando el combate…</p>
+                    <div class="mode-selector">
+            <button class="btn btn-ghost active" data-mode="manual">Modo manual</button>
+            <button class="btn btn-ghost" data-mode="automatic">Modo automático</button>
+          </div>
           <button class="btn btn-ghost" data-mute>${isMuted() ? '🔇 Sonido apagado' : '🔊 Sonido'}</button>
         </div>
         <div class="arena">
@@ -74,7 +79,8 @@ export class CardBattle extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.finished = true; // detiene el ciclo si el usuario sale de la pantalla
+    this.finished = true;
+    this.stopAuto(); 
   }
 
   // ---------- ayudas ----------
@@ -106,6 +112,47 @@ export class CardBattle extends HTMLElement {
     setTimeout(() => el.remove(), 1400);
   }
 
+  
+  autoPlay() {
+    const card = this.active('player');
+    this.busy = true;
+    this.controls.setCard(card, false);
+    this.banner(`Ronda ${this.round} · 🤖 Turno automático del jugador…`, 'player');
+    clearTimeout(this.autoTimer);
+    this.autoTimer = setTimeout(() => {
+      this.autoTimer = null;
+      if (this.finished || this.mode !== 'automatic' || this.turn !== 'player') return;
+      this.execute('player', machineChooseAction(this.active('player')));
+    }, 1100);
+  }
+
+ 
+  stopAuto() {
+    clearTimeout(this.autoTimer);
+    this.autoTimer = null;
+  }
+
+  
+  setMode(mode) {
+    this.mode = mode;
+    this.querySelectorAll('[data-mode]').forEach((b) =>
+      b.classList.toggle('active', b.dataset.mode === mode)
+    );
+    this.querySelector('.battle').classList.toggle('is-auto', mode === 'automatic');
+    if (this.finished) return;
+
+    if (mode === 'automatic') {
+      
+      if (this.turn === 'player' && !this.busy) this.autoPlay();
+    } else if (this.autoTimer) {
+      
+      this.stopAuto();
+      this.busy = false;
+      this.controls.setCard(this.active('player'), true);
+      this.banner(`Ronda ${this.round} · Tu turno: elige una acción`, 'player');
+    }
+  }
+
   renderPips() {
     ['player', 'machine'].forEach((side) => {
       this.querySelector(`[data-pips="${side}"]`).innerHTML = this.deck[side]
@@ -117,7 +164,7 @@ export class CardBattle extends HTMLElement {
     });
   }
 
-  // ---------- turnos ----------
+ 
   beginTurn() {
     if (this.finished) return;
     const card = this.active(this.turn);
@@ -131,6 +178,10 @@ export class CardBattle extends HTMLElement {
     );
 
     if (this.turn === 'player') {
+      if (this.mode === 'automatic') {
+        this.autoPlay();
+        return;
+      }
       this.busy = false;
       this.controls.setCard(card, true);
     } else {
@@ -187,7 +238,7 @@ export class CardBattle extends HTMLElement {
       defenderEl.refresh(defender);
       attackerEl.refresh(attacker);
     }
-    
+
 
     await wait(800);
     if (this.finished) return;
@@ -231,6 +282,7 @@ export class CardBattle extends HTMLElement {
   // ---------- fin de partida ----------
   async finish(winnerSide) {
     this.finished = true;
+    this.stopAuto();
     this.result = winnerSide === 'player' ? 'win' : 'loss';
     this.points = pointsFor(this.result);
     this.renderPips();
@@ -250,6 +302,7 @@ export class CardBattle extends HTMLElement {
       nickname: p.nickname,
       result: this.result,
       pointsAwarded: this.points,
+      mode: this.mode,
       playerDeck: this.deck.player.map((c) => c.id),
       machineDeck: this.deck.machine.map((c) => c.id),
       startedAt: this.startedAt,
@@ -302,11 +355,13 @@ export class CardBattle extends HTMLElement {
 
   setupEvents() {
     this.addEventListener('battle-action', (e) => {
-      if (this.busy || this.finished || this.turn !== 'player') return;
+      if (this.busy || this.finished || this.turn !== 'player' || this.mode === 'automatic') return;
       this.execute('player', e.detail.actionId);
     });
 
     this.addEventListener('click', async (e) => {
+      const modeBtn = e.target.closest('[data-mode]');
+      if (modeBtn) this.setMode(modeBtn.dataset.mode);
       const mute = e.target.closest('[data-mute]');
       if (mute) {
         setMuted(!isMuted());
