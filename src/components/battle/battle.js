@@ -3,15 +3,35 @@ import './battleControls.js';
 import {
   createBattleCard, startTurn, performAction, machineChooseAction, isDefeated, pointsFor,
 } from '../../utils/battleEngine.js';
+import { chooseAutoAction } from '../../utils/autoStrategy.js'; // [EXAMEN]
 import { coinFlip } from '../../utils/random.js';
 import { playSound, SOUNDS, isMuted, setMuted } from '../../utils/audio.js';
 import { patchPlayer } from '../../api/playersApi.js';
 import { postBattle } from '../../api/battlesApi.js';
 import { escapeHtml } from '../../utils/assets.js';
 
-const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const other = (side) => (side === 'player' ? 'machine' : 'player');
 const NAMES = { player: 'Tú', machine: 'La máquina' };
+
+// [EXAMEN] Modos de batalla y pausa visible entre acciones
+const MODES = { MANUAL: 'manual', AUTO: 'auto' };
+const ACTION_DELAY = 1100; // ms antes de cada acción automática (jugador o máquina)
+const MODE_KEY = 'battleMode';
+
+function readMode() {
+  try {
+    return sessionStorage.getItem(MODE_KEY) === MODES.AUTO ? MODES.AUTO : MODES.MANUAL;
+  } catch {
+    return MODES.MANUAL; // sin sessionStorage
+  }
+}
+function saveMode(mode) {
+  try {
+    sessionStorage.setItem(MODE_KEY, mode);
+  } catch {
+    /* sin sessionStorage */
+  }
+}
 
 // Componente principal del combate.
 // Antes de añadirlo al DOM se le asigna:  el.setup = { player, playerCards, machineCards }
@@ -20,6 +40,10 @@ export class CardBattle extends HTMLElement {
     super();
     this.finished = false;
     this.busy = true;
+    this.mode = readMode(); // [EXAMEN] manual | auto
+    this.turnToken = 0; // [EXAMEN] identifica el turno vigente (evita turnos duplicados)
+    this.timers = new Set(); // [EXAMEN] temporizadores activos, para poder cancelarlos
+    this.lastAction = { player: null, machine: null }; // [EXAMEN] para no defenderse seguido
     this.render();
     this.setupEvents();
   }
@@ -29,6 +53,10 @@ export class CardBattle extends HTMLElement {
       <section class="battle">
         <div class="battle-top">
           <p class="turn-banner" role="status" aria-live="polite">Preparando el combate…</p>
+          <div class="mode-switch" role="group" aria-label="Modo de batalla">
+            <button class="btn btn-ghost" data-mode="${MODES.MANUAL}" aria-pressed="${this.mode === MODES.MANUAL}">🕹 Manual</button>
+            <button class="btn btn-ghost" data-mode="${MODES.AUTO}" aria-pressed="${this.mode === MODES.AUTO}">🤖 Automático</button>
+          </div>
           <button class="btn btn-ghost" data-mute>${isMuted() ? '🔇 Sonido apagado' : '🔊 Sonido'}</button>
         </div>
         <div class="arena">
@@ -70,11 +98,29 @@ export class CardBattle extends HTMLElement {
     this.turn = coinFlip() ? 'player' : 'machine';
     this.banner(this.turn === 'player' ? '🎲 Sorteo: ¡empiezas tú!' : '🎲 Sorteo: empieza la máquina', this.turn);
     this.addLog(`Sorteo: empieza ${this.turn === 'player' ? 'el jugador' : 'la máquina'}.`);
-    wait(1800).then(() => this.beginTurn());
+    this.pause(1800).then(() => this.beginTurn());
   }
 
   disconnectedCallback() {
     this.finished = true; // detiene el ciclo si el usuario sale de la pantalla
+    this.clearTimers(); // [EXAMEN] ningún temporizador queda activo
+  }
+
+  // ---------- temporizadores [EXAMEN] ----------
+  // Pausa basada en Promises. Cada temporizador queda registrado para poder cancelarlo.
+  pause(ms) {
+    return new Promise((resolve) => {
+      const id = setTimeout(() => {
+        this.timers.delete(id);
+        resolve();
+      }, ms);
+      this.timers.add(id);
+    });
+  }
+
+  clearTimers() {
+    this.timers.forEach((id) => clearTimeout(id));
+    this.timers.clear();
   }
 
   // ---------- ayudas ----------
@@ -108,29 +154,70 @@ export class CardBattle extends HTMLElement {
     });
   }
 
+  // ---------- modo de batalla [EXAMEN] ----------
+  setMode(mode) {
+    if (this.finished || mode === this.mode) return;
+    this.mode = mode;
+    saveMode(mode);
+    this.querySelectorAll('[data-mode]').forEach((b) =>
+      b.setAttribute('aria-pressed', String(b.dataset.mode === mode))
+    );
+    this.addLog(mode === MODES.AUTO ? 'Modo automático activado.' : 'Modo manual activado.');
+
+    // Si era el turno del jugador y esperaba un clic, pasa a jugar solo
+    if (mode === MODES.AUTO && this.turn === 'player' && !this.busy) {
+      this.controls.setCard(this.active('player'), false);
+      this.banner(`Ronda ${this.round} · Modo automático: tu carta actúa…`, 'player');
+      this.scheduleAction(this.turnToken);
+    }
+  }
+
+  // Devuelve el control al jugador (modo manual)
+  enablePlayer(card) {
+    this.busy = false;
+    this.controls.setCard(card, true);
+    this.banner(`Ronda ${this.round} · Tu turno: elige una acción`, 'player');
+  }
+
+  // Programa UNA acción automática tras una pausa visible.
+  // `token` evita que un temporizador viejo actúe sobre otro turno.
+  scheduleAction(token) {
+    this.busy = true;
+    const side = this.turn;
+    const card = this.active(side);
+    this.pause(ACTION_DELAY).then(() => {
+      if (this.finished || token !== this.turnToken) return;
+      // Si el usuario volvió a modo manual durante la pausa, recupera el control
+      if (side === 'player' && this.mode === MODES.MANUAL) return this.enablePlayer(card);
+      const actionId = side === 'player'
+        ? chooseAutoAction(card, this.lastAction.player)
+        : machineChooseAction(card);
+      this.execute(side, actionId);
+    });
+  }
+
   // ---------- turnos ----------
   beginTurn() {
     if (this.finished) return;
+    const token = ++this.turnToken;
     const card = this.active(this.turn);
     startTurn(card);
     this.cardEl(this.turn).refresh(card);
+
+    if (this.turn === 'player' && this.mode === MODES.MANUAL) {
+      this.enablePlayer(card);
+      return;
+    }
+
+    // Turno de la máquina o del jugador en modo automático
     this.banner(
       this.turn === 'player'
-        ? `Ronda ${this.round} · Tu turno: elige una acción`
+        ? `Ronda ${this.round} · Modo automático: tu carta actúa…`
         : `Ronda ${this.round} · Turno de la máquina…`,
       this.turn
     );
-
-    if (this.turn === 'player') {
-      this.busy = false;
-      this.controls.setCard(card, true);
-    } else {
-      this.busy = true;
-      this.controls.setCard(this.active('player'), false);
-      wait(1100).then(() => {
-        if (!this.finished) this.execute('machine', machineChooseAction(card));
-      });
-    }
+    this.controls.setCard(this.active('player'), false);
+    this.scheduleAction(token);
   }
 
   async execute(side, actionId) {
@@ -143,6 +230,7 @@ export class CardBattle extends HTMLElement {
     const defenderEl = this.cardEl(foe);
 
     const result = performAction(attacker, defender, actionId);
+    this.lastAction[side] = actionId;
 
     if (result.type === 'defend') {
       playSound(attacker.sounds.defense);
@@ -152,18 +240,36 @@ export class CardBattle extends HTMLElement {
     } else {
       playSound(result.type === 'special' ? attacker.sounds.special : attacker.sounds.attack);
       attackerEl.play(result.type === 'special' ? 'special' : 'attack');
-      await wait(350);
+      await this.pause(350);
       if (this.finished) return;
-      defenderEl.play('hit');
-      defenderEl.floatText(`-${result.damage}${result.blocked ? ' 🛡' : ''}`);
+
+      if (result.dodged) {
+        // [EXAMEN] Ataque esquivado: daño 0
+        playSound(SOUNDS.dodge);
+        defenderEl.play('dodge');
+        defenderEl.floatText('¡ESQUIVADO!', 'dodge');
+        this.banner('¡ATAQUE ESQUIVADO!', foe);
+        this.addLog(`¡ATAQUE ESQUIVADO! ${defender.name} evita ${result.name} de ${attacker.name}.`);
+      } else {
+        if (result.critical) {
+          // [EXAMEN] Golpe crítico: daño ×1.5
+          playSound(SOUNDS.critical);
+          attackerEl.play('crit');
+          defenderEl.floatText('¡GOLPE CRÍTICO!', 'crit');
+          this.banner('¡GOLPE CRÍTICO!', side);
+        }
+        defenderEl.play('hit');
+        defenderEl.floatText(`-${result.damage}${result.blocked ? ' 🛡' : ''}`);
+        this.addLog(
+          `${NAMES[side]}: ${attacker.name} usa ${result.name} y causa ${result.damage} de daño` +
+          `${result.critical ? ' ¡GOLPE CRÍTICO!' : ''}${result.blocked ? ' (reducido por defensa)' : ''}.`
+        );
+      }
       defenderEl.refresh(defender);
       attackerEl.refresh(attacker);
-      this.addLog(
-        `${NAMES[side]}: ${attacker.name} usa ${result.name} y causa ${result.damage} de daño${result.blocked ? ' (reducido por defensa)' : ''}.`
-      );
     }
 
-    await wait(800);
+    await this.pause(800);
     if (this.finished) return;
 
     if (isDefeated(defender)) {
@@ -183,7 +289,7 @@ export class CardBattle extends HTMLElement {
     playSound(card.sounds.defeated);
     this.addLog(`${card.name} (${NAMES[side].toLowerCase()}) fue derrotada.`);
     this.renderPips();
-    await wait(1000);
+    await this.pause(1000);
     if (this.finished) return true;
 
     this.idx[side] += 1;
@@ -198,13 +304,15 @@ export class CardBattle extends HTMLElement {
     playSound(SOUNDS.enter);
     this.addLog(`Entra ${next.name} con ${next.hp} / ${next.maxHp} PV.`);
     this.renderPips();
-    await wait(800);
+    await this.pause(800);
     return this.finished;
   }
 
   // ---------- fin de partida ----------
   async finish(winnerSide) {
     this.finished = true;
+    this.clearTimers(); // [EXAMEN] la batalla se detiene: no queda ningún temporizador
+    this.controls.disable();
     this.result = winnerSide === 'player' ? 'win' : 'loss';
     this.points = pointsFor(this.result);
     this.renderPips();
@@ -276,11 +384,15 @@ export class CardBattle extends HTMLElement {
 
   setupEvents() {
     this.addEventListener('battle-action', (e) => {
-      if (this.busy || this.finished || this.turn !== 'player') return;
+      // [EXAMEN] En modo automático los botones del jugador no cuentan
+      if (this.busy || this.finished || this.turn !== 'player' || this.mode !== MODES.MANUAL) return;
       this.execute('player', e.detail.actionId);
     });
 
     this.addEventListener('click', async (e) => {
+      const modeBtn = e.target.closest('[data-mode]'); // [EXAMEN]
+      if (modeBtn) this.setMode(modeBtn.dataset.mode);
+
       const mute = e.target.closest('[data-mute]');
       if (mute) {
         setMuted(!isMuted());
