@@ -1,29 +1,32 @@
-// Motor de combate: funciones puras, no tocan el DOM.
+
 import { randomBetween, pickRandom } from './random.js';
 
 export const MAX_HP = 250;
-export const DEFENSE_REDUCTION = 0.5; // la defensa reduce el siguiente golpe un 50%
+export const DEFENSE_REDUCTION = 0.5; // 
 export const POINTS = { win: 50, loss: 10 };
+export const CRIT_CHANCE = 0.12;     
+export const CRIT_MULTIPLIER = 1.5;  
+export const DODGE_CHANCE = 0.08;    
 
-// Copia de la carta con el estado de combate
+
 export function createBattleCard(card) {
   return {
     ...structuredClone(card),
     hp: MAX_HP,
     maxHp: MAX_HP,
     isDefending: false,
-    turnsPlayed: 0, // turnos propios de esta carta
-    cooldown: 0, // turnos propios que faltan para reutilizar el especial
+    turnsPlayed: 0, 
+    cooldown: 0, 
   };
 }
 
-// Se llama al comenzar cada turno propio de la carta
+
 export function startTurn(card) {
   card.turnsPlayed += 1;
   if (card.cooldown > 0) card.cooldown -= 1;
 }
 
-// daño real = daño base × factor entre 0.85 y 1.15, redondeado
+
 export const calcDamage = (baseDamage) => Math.round(baseDamage * randomBetween(0.85, 1.15));
 
 export function specialStatus(card) {
@@ -38,14 +41,14 @@ export function specialStatus(card) {
 
 export const canUseSpecial = (card) => specialStatus(card).ready;
 
-// Acciones válidas ahora mismo: 'attack-0'..'attack-3', 'defend', 'special'
+
 export function getAvailableActions(card) {
   const actions = ['attack-0', 'attack-1', 'attack-2', 'attack-3', 'defend'];
   if (canUseSpecial(card)) actions.push('special');
   return actions;
 }
 
-// "IA" de la máquina: sin inteligencia real, solo reglas simples y azar
+
 export function machineChooseAction(card) {
   const available = getAvailableActions(card);
   if (available.includes('special') && Math.random() < 0.6) return 'special';
@@ -53,7 +56,7 @@ export function machineChooseAction(card) {
   return pickRandom(options);
 }
 
-// Ejecuta una acción. Modifica las cartas y devuelve un resumen para la interfaz.
+
 export function performAction(attacker, defender, actionId) {
   if (actionId === 'defend') {
     attacker.isDefending = true;
@@ -71,14 +74,33 @@ export function performAction(attacker, defender, actionId) {
     move = attacker.attacks[Number(actionId.split('-')[1])];
   }
 
-  let damage = calcDamage(move.baseDamage);
-  const blocked = defender.isDefending;
-  if (blocked) {
-    damage = Math.round(damage * (1 - DEFENSE_REDUCTION));
-    defender.isDefending = false; // la defensa se consume
-  }
-  defender.hp = Math.max(0, defender.hp - damage);
-  return { type, name: move.name, damage, blocked };
+    
+    let damage = move.baseDamage * randomBetween(0.85, 1.15);
+
+    
+    const dodged = Math.random() < DODGE_CHANCE;
+    if (dodged) {
+      defender.isDefending = false; 
+      return { type, name: move.name, damage: 0, blocked: false, dodged: true, critical: false };
+    }
+  
+     
+    const critical = Math.random() < CRIT_CHANCE;
+    if (critical) damage *= CRIT_MULTIPLIER;
+  
+   
+    const blocked = defender.isDefending;
+    if (blocked) {
+      damage *= 1 - DEFENSE_REDUCTION;
+      defender.isDefending = false; 
+    }
+  
+    
+    damage = Math.round(damage);
+    defender.hp = Math.max(0, defender.hp - damage);
+  
+    return { type, name: move.name, damage, blocked, dodged: false, critical };
+
 }
 
 export const isDefeated = (card) => card.hp <= 0;
