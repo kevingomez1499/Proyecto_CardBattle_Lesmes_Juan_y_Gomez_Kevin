@@ -1,9 +1,13 @@
-// Motor de combate: funciones puras, no tocan el DOM.
+// Motor de combate: funciones, no tocan el DOM.
 import { randomBetween, pickRandom } from './random.js';
 
 export const MAX_HP = 250;
 export const DEFENSE_REDUCTION = 0.5; // la defensa reduce el siguiente golpe un 50%
 export const POINTS = { win: 50, loss: 10 };
+
+// [EXAMEN] Golpe crítico
+export const CRIT_CHANCE = 0.12;   // 12 % del  golpe  crítico
+export const CRIT_MULTIPLIER = 1.5; // el critico  multiplica el daño ×1.5
 
 // Copia de la carta con el estado de combate
 export function createBattleCard(card) {
@@ -26,6 +30,26 @@ export function startTurn(card) {
 // daño real = daño base × factor entre 0.85 y 1.15, redondeado
 export const calcDamage = (baseDamage) => Math.round(baseDamage * randomBetween(0.85, 1.15));
 
+// [NUEVO] Resuelve el daño de UN ataque en este orden:
+// factor aleatorio -> golpe crítico -> defensa -> redondeo.
+// `rng` se puede reemplazar en las pruebas para obtener resultados predecibles.
+export function resolveDamage(baseDamage, defenderIsDefending = false, rng = Math.random) {
+  // 2. Factor aleatorio de daño (sin redondear todavía)
+  const factor = 0.85 + rng() * 0.3;
+  let damage = baseDamage * factor;
+
+  // 3. ¿Golpe crítico? (12 %) -> daño × 1.5
+  const critical = rng() < CRIT_CHANCE;
+  if (critical) damage *= CRIT_MULTIPLIER;
+
+  // 4. ¿El defensor estaba defendiendo? Reducción del 50 %
+  const blocked = defenderIsDefending;
+  if (blocked) damage *= 1 - DEFENSE_REDUCTION;
+
+  // 5. Redondear el daño final
+  return { damage: Math.round(damage), critical, blocked, factor };
+}
+
 export function specialStatus(card) {
   if (card.cooldown > 0) return { ready: false, kind: 'cooldown', label: `Recarga: ${card.cooldown}` };
   const unlock = card.special.unlockTurn ?? 2;
@@ -45,7 +69,10 @@ export function getAvailableActions(card) {
   return actions;
 }
 
-// "IA" de la máquina: sin inteligencia real, solo reglas simples y azar
+// [NUEVO] ¿La acción está permitida ahora mismo para esta carta?
+export const isValidAction = (card, actionId) => getAvailableActions(card).includes(actionId);
+
+// "IA" solo reglas simples y azar
 export function machineChooseAction(card) {
   const available = getAvailableActions(card);
   if (available.includes('special') && Math.random() < 0.6) return 'special';
@@ -53,17 +80,21 @@ export function machineChooseAction(card) {
   return pickRandom(options);
 }
 
-// Ejecuta una acción. Modifica las cartas y devuelve un resumen para la interfaz.
-export function performAction(attacker, defender, actionId) {
+// Ejecuta una acción. Modifica las cartas y devuelve un resumen para la interfaz:
+// { type, name, damage, blocked, critical }
+export function performAction(attacker, defender, actionId, rng = Math.random) {
+  if (!isValidAction(attacker, actionId)) {
+    throw new Error('Acción no válida o bloqueada.');
+  }
+
   if (actionId === 'defend') {
     attacker.isDefending = true;
-    return { type: 'defend', name: attacker.defense.name, damage: 0, blocked: false };
+    return { type: 'defend', name: attacker.defense.name, damage: 0, blocked: false, critical: false };
   }
 
   let type = 'attack';
   let move;
   if (actionId === 'special') {
-    if (!canUseSpecial(attacker)) throw new Error('El poder especial no está disponible.');
     type = 'special';
     move = attacker.special;
     attacker.cooldown = attacker.special.cooldown ?? 3;
@@ -71,14 +102,16 @@ export function performAction(attacker, defender, actionId) {
     move = attacker.attacks[Number(actionId.split('-')[1])];
   }
 
-  let damage = calcDamage(move.baseDamage);
-  const blocked = defender.isDefending;
-  if (blocked) {
-    damage = Math.round(damage * (1 - DEFENSE_REDUCTION));
-    defender.isDefending = false; // la defensa se consume
-  }
-  defender.hp = Math.max(0, defender.hp - damage);
-  return { type, name: move.name, damage, blocked };
+  // Factor, crítico, defensa y redondeo (ver resolveDamage)
+  const outcome = resolveDamage(move.baseDamage, defender.isDefending, rng);
+
+  // La defensa se consume al recibir el golpe
+  if (outcome.blocked) defender.isDefending = false;
+
+  // Restar HP (nunca por debajo de 0)
+  defender.hp = Math.max(0, defender.hp - outcome.damage);
+
+  return { type, name: move.name, ...outcome };
 }
 
 export const isDefeated = (card) => card.hp <= 0;
