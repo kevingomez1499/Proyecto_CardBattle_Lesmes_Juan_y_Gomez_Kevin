@@ -16,8 +16,8 @@ npm install
 
 ## Cómo ejecutarlo (dos terminales)
 ```bash
-npm run server   # API JSON Server  → http://localhost:3000
-npm run dev      # Vite (la página) → http://localhost:5173
+npm run server   
+npm run dev      
 ```
 Para publicar: `npm run build` (genera la carpeta `dist/`).
 
@@ -58,3 +58,18 @@ src/app.js             punto de entrada
 1. Sube el repositorio a GitHub.
 2. En *Settings → Pages* elige **Source: GitHub Actions** (el workflow `.github/workflows/deploy.yml` ya está incluido).
 3. GitHub Pages solo sirve archivos estáticos: **no puede ejecutar JSON Server**. Para producción crea una API compatible (MockAPI, Supabase REST o JSON Server en Railway) con los recursos `cards`, `players`, `admins` y `battles`, y escribe su URL en `VITE_API_PROD_URL` y `VITE_API_MODE=production`.
+
+## Examen: extensión individual
+
+Funcionalidades agregadas sobre el proyecto original:
+
+- **Modo de batalla automático:** selector "Modo manual / Modo automático" en la pantalla de batalla. En automático el jugador y la máquina eligen sus acciones solos, con una pausa de 1.1 s entre acciones (`setTimeout`). Se puede cambiar de modo durante la partida.
+- **Selección automática de acciones:** `machineChooseAction` en `src/utils/battleEngine.js` arma la lista de acciones válidas (4 ataques, defensa y especial solo si está desbloqueado y sin cooldown) y elige una.
+- **Golpe crítico:** 12 % de probabilidad, daño ×1.5 (`CRIT_CHANCE`, `CRIT_MULTIPLIER`). Muestra "¡GOLPE CRÍTICO!" con animación y sonido.
+- **Esquive:** 8 % de probabilidad, daño 0 (`DODGE_CHANCE`). Muestra "¡ATAQUE ESQUIVADO!" con animación. El especial también puede esquivarse y ser crítico.
+- **Orden de resolución** en `performAction`: factor aleatorio → esquive → crítico → defensa (−50 %) → redondeo → restar HP.
+- **Decisión de diseño:** si un ataque es esquivado, el estado de defensa del defensor se consume.
+- **Control de temporizadores:** `autoTimer` se guarda y se cancela con `stopAuto()` al terminar la partida, al volver a modo manual y al salir de la pantalla (`disconnectedCallback`).
+- **Historial:** cada batalla guardada incluye el campo `mode` (`manual` o `automatic`).
+
+Archivos modificados: `src/utils/battleEngine.js`, `src/components/battle/battle.js`, `src/components/battle/battleStyles.css`, `README.md`.
