@@ -51,6 +51,15 @@
       "losses": 0,
       "gamesPlayed": 0,
       "createdAt": "2026-11-23T22:53:10.085Z"
+    },
+    {
+      "id": "AoSn0bCLvdE",
+      "nickname": "diana",
+      "points": 50,
+      "wins": 1,
+      "losses": 0,
+      "gamesPlayed": 1,
+      "createdAt": "2026-11-25T20:48:45.694Z"
     }
   ],
   "cards": [
@@ -1107,6 +1116,29 @@
       ],
       "startedAt": "2026-11-23T21:57:34.405Z",
       "finishedAt": "2026-11-23T21:59:48.405Z"
+    },
+    {
+      "id": "v8lh-38db4A",
+      "playerId": "AoSn0bCLvdE",
+      "nickname": "diana",
+      "result": "win",
+      "pointsAwarded": 50,
+      "playerDeck": [
+        "card-004",
+        "card-007",
+        "card-010",
+        "card-015",
+        "card-019"
+      ],
+      "machineDeck": [
+        "card-005",
+        "card-017",
+        "card-018",
+        "card-013",
+        "card-020"
+      ],
+      "startedAt": "2026-11-25T20:49:00.263Z",
+      "finishedAt": "2026-11-25T20:51:53.038Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
