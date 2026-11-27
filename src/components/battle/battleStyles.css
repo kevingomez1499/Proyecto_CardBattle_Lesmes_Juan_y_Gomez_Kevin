@@ -131,3 +131,44 @@ battle-card { display: block; width: min(300px, 100%); }
   .bctl-attacks { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 480px) { .bctl-extra { grid-template-columns: 1fr; } }
+.arena { position: relative; }
+
+.event-toast {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  border-radius: 10px;
+  pointer-events: none;
+  animation: toast-pop 1.4s ease forwards;
+}
+.event-critical { background: #ffb300; color: #3b1f00; box-shadow: 0 0 25px #ffb300; }
+.event-dodge { background: #29b6f6; color: #002b3d; box-shadow: 0 0 25px #29b6f6; }
+
+@keyframes toast-pop {
+  0%   { opacity: 0; transform: translate(-50%, -30%) scale(0.5); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+  80%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -70%) scale(1); }
+}
+
+.critical-hit { display: block; animation: crit-shake 0.5s ease; }
+@keyframes crit-shake {
+  0%, 100% { transform: translateX(0); filter: none; }
+  20% { transform: translateX(-10px); filter: brightness(2) saturate(2); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+
+}
+
+.dodging { display: block; animation: dodge-slide 0.6s ease; }
+@keyframes dodge-slide {
+  0%   { transform: translateX(0); opacity: 1; }
+  40%  { transform: translateX(40px); opacity: 0.4; }
+  100% { transform: translateX(0); opacity: 1; }
+}

@@ -97,6 +97,15 @@ export class CardBattle extends HTMLElement {
     while (log.children.length > 8) log.lastElementChild.remove();
   }
 
+  showEvent(text, kind) {
+    const arena = this.querySelector('.arena');
+    const el = document.createElement('div');
+    el.className = `event-toast event-${kind}`;
+    el.textContent = text;
+    arena.appendChild(el);
+    setTimeout(() => el.remove(), 1400);
+  }
+
   renderPips() {
     ['player', 'machine'].forEach((side) => {
       this.querySelector(`[data-pips="${side}"]`).innerHTML = this.deck[side]
@@ -154,14 +163,31 @@ export class CardBattle extends HTMLElement {
       attackerEl.play(result.type === 'special' ? 'special' : 'attack');
       await wait(350);
       if (this.finished) return;
-      defenderEl.play('hit');
-      defenderEl.floatText(`-${result.damage}${result.blocked ? ' 🛡' : ''}`);
+      if (result.dodged) {
+        playSound(defender.sounds.defense);
+        this.showEvent('¡ATAQUE ESQUIVADO!', 'dodge');
+        defenderEl.classList.add('dodging');
+        setTimeout(() => defenderEl.classList.remove('dodging'), 700);
+        defenderEl.floatText('¡Esquivado!');
+        this.addLog(`${NAMES[foe]}: ${defender.name} esquivó ${result.name} de ${attacker.name}.`);
+      } else {
+        defenderEl.play('hit');
+        if (result.critical) {
+          playSound(attacker.sounds.special);
+          this.showEvent('¡GOLPE CRÍTICO!', 'critical');
+          defenderEl.classList.add('critical-hit');
+          setTimeout(() => defenderEl.classList.remove('critical-hit'), 700);
+        }
+        defenderEl.floatText(`-${result.damage}${result.critical ? ' 💥' : ''}${result.blocked ? ' 🛡' : ''}`);
+        this.addLog(
+          `${NAMES[side]}: ${attacker.name} usa ${result.name} y causa ${result.damage} de daño` +
+          `${result.critical ? ' (¡CRÍTICO!)' : ''}${result.blocked ? ' (reducido por defensa)' : ''}.`
+        );
+      }
       defenderEl.refresh(defender);
       attackerEl.refresh(attacker);
-      this.addLog(
-        `${NAMES[side]}: ${attacker.name} usa ${result.name} y causa ${result.damage} de daño${result.blocked ? ' (reducido por defensa)' : ''}.`
-      );
     }
+    
 
     await wait(800);
     if (this.finished) return;
