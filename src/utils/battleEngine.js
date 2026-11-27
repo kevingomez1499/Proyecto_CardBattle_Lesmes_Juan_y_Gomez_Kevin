@@ -1,13 +1,14 @@
-// Motor de combate: funciones, no tocan el DOM.
+// Motor de combate: funciones puras, no tocan el DOM.
 import { randomBetween, pickRandom } from './random.js';
 
 export const MAX_HP = 250;
 export const DEFENSE_REDUCTION = 0.5; // la defensa reduce el siguiente golpe un 50%
 export const POINTS = { win: 50, loss: 10 };
 
-// [EXAMEN] Golpe crítico
-export const CRIT_CHANCE = 0.12;   // 12 % del  golpe  crítico
-export const CRIT_MULTIPLIER = 1.5; // el critico  multiplica el daño ×1.5
+// [EXAMEN] Nuevas reglas de combate
+export const CRIT_CHANCE = 0.12;   // 12 % de golpe crítico
+export const CRIT_MULTIPLIER = 1.5; // el crítico multiplica el daño ×1.5
+export const DODGE_CHANCE = 0.08;  // 8 % de esquivar
 
 // Copia de la carta con el estado de combate
 export function createBattleCard(card) {
@@ -30,24 +31,28 @@ export function startTurn(card) {
 // daño real = daño base × factor entre 0.85 y 1.15, redondeado
 export const calcDamage = (baseDamage) => Math.round(baseDamage * randomBetween(0.85, 1.15));
 
-// [NUEVO] Resuelve el daño de UN ataque en este orden:
-// factor aleatorio -> golpe crítico -> defensa -> redondeo.
+// [EXAMEN] Resuelve el daño de UN ataque en el orden pedido por el enunciado.
 // `rng` se puede reemplazar en las pruebas para obtener resultados predecibles.
 export function resolveDamage(baseDamage, defenderIsDefending = false, rng = Math.random) {
   // 2. Factor aleatorio de daño (sin redondear todavía)
   const factor = 0.85 + rng() * 0.3;
   let damage = baseDamage * factor;
 
-  // 3. ¿Golpe crítico? (12 %) -> daño × 1.5
+  // 3-4. ¿El defensor esquiva? Entonces el daño final es 0 y termina la resolución
+  if (rng() < DODGE_CHANCE) {
+    return { damage: 0, dodged: true, critical: false, blocked: false, factor };
+  }
+
+  // 5-6. ¿Golpe crítico? daño × 1.5
   const critical = rng() < CRIT_CHANCE;
   if (critical) damage *= CRIT_MULTIPLIER;
 
-  // 4. ¿El defensor estaba defendiendo? Reducción del 50 %
+  // 7. ¿El defensor estaba defendiendo? Reducción del 50 %
   const blocked = defenderIsDefending;
   if (blocked) damage *= 1 - DEFENSE_REDUCTION;
 
-  // 5. Redondear el daño final
-  return { damage: Math.round(damage), critical, blocked, factor };
+  // 8. Redondear el daño final
+  return { damage: Math.round(damage), dodged: false, critical, blocked, factor };
 }
 
 export function specialStatus(card) {
@@ -69,10 +74,10 @@ export function getAvailableActions(card) {
   return actions;
 }
 
-// [NUEVO] ¿La acción está permitida ahora mismo para esta carta?
+// [EXAMEN] ¿La acción está permitida ahora mismo para esta carta?
 export const isValidAction = (card, actionId) => getAvailableActions(card).includes(actionId);
 
-// "IA" solo reglas simples y azar
+// "IA" de la máquina: sin inteligencia real, solo reglas simples y azar
 export function machineChooseAction(card) {
   const available = getAvailableActions(card);
   if (available.includes('special') && Math.random() < 0.6) return 'special';
@@ -81,7 +86,7 @@ export function machineChooseAction(card) {
 }
 
 // Ejecuta una acción. Modifica las cartas y devuelve un resumen para la interfaz:
-// { type, name, damage, blocked, critical }
+// { type, name, damage, blocked, critical, dodged }
 export function performAction(attacker, defender, actionId, rng = Math.random) {
   if (!isValidAction(attacker, actionId)) {
     throw new Error('Acción no válida o bloqueada.');
@@ -89,7 +94,7 @@ export function performAction(attacker, defender, actionId, rng = Math.random) {
 
   if (actionId === 'defend') {
     attacker.isDefending = true;
-    return { type: 'defend', name: attacker.defense.name, damage: 0, blocked: false, critical: false };
+    return { type: 'defend', name: attacker.defense.name, damage: 0, blocked: false, critical: false, dodged: false };
   }
 
   let type = 'attack';
@@ -102,13 +107,13 @@ export function performAction(attacker, defender, actionId, rng = Math.random) {
     move = attacker.attacks[Number(actionId.split('-')[1])];
   }
 
-  // Factor, crítico, defensa y redondeo (ver resolveDamage)
+  // 2-8. Esquivar, crítico, defensa y redondeo (ver resolveDamage)
   const outcome = resolveDamage(move.baseDamage, defender.isDefending, rng);
 
-  // La defensa se consume al recibir el golpe
+  // La defensa solo se consume cuando el golpe llega a recibirse (si esquiva, se conserva)
   if (outcome.blocked) defender.isDefending = false;
 
-  // Restar HP (nunca por debajo de 0)
+  // 9. Restar HP (nunca por debajo de 0)
   defender.hp = Math.max(0, defender.hp - outcome.damage);
 
   return { type, name: move.name, ...outcome };
